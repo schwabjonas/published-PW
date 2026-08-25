@@ -438,11 +438,16 @@ app-art > .art-page {
 }
 
 .hero-wave {
+  /* Fills the hero rather than sitting as a fixed-ratio strip along the bottom.
+     `height: auto` meant a narrow viewport scaled the wide artwork down to a
+     thin band, leaving most of the hero empty; cover keeps it filling the box
+     at any aspect ratio, anchored to the bottom where the wave crest reads. */
   position: absolute;
-  bottom: 0;
-  left: 0;
+  inset: 0;
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: cover;
+  object-position: center bottom;
   pointer-events: none;
   z-index: 0;
 }
@@ -679,8 +684,12 @@ a.btn {
 
 .profile-photo-placeholder {
   position: relative;
-  width: 180px;
-  height: 240px;
+  /* Driven by custom properties so the whole avatar scales per breakpoint from
+     one place — see the RESPONSIVE SYSTEM section at the end of this file.
+     Scaling the layout box (rather than transform: scale) keeps the flex item's
+     real size correct, so it never leaves a phantom gap on small screens. */
+  width: var(--head-w);
+  height: var(--head-h);
   flex-shrink: 0;
   border-radius: 8px;
   cursor: pointer;
@@ -694,8 +703,8 @@ a.btn {
   position: absolute;
   top: 60%;
   left: 50%;
-  width: 300px;
-  height: 600px;
+  width: var(--head-oval-w);
+  height: var(--head-oval-h);
   transform: translate(-50%, -50%);
   background: radial-gradient(ellipse at center, #0A0A0A 35%, transparent 75%);
   z-index: 1; /* in front of the head layers (z-2) for now */
@@ -705,9 +714,9 @@ a.btn {
 .group25-img {
   position: absolute;
   z-index: 2; /* head layers sit above the oval backdrop (z-1) */
-  top: 30px;
-  left: 25px;
-  width: 130px;
+  top: var(--head-img-top);
+  left: var(--head-img-left);
+  width: var(--head-img-w);
   height: auto;
   pointer-events: none;
 }
@@ -2788,4 +2797,191 @@ app-chat + footer {
   .pd-hero-main {
     padding: 2.5rem 32px;
   }
+}
+
+/* ===========================================================================
+   RESPONSIVE SYSTEM
+   ===========================================================================
+   Four tiers. Sizes come from custom properties so the avatar, hero padding
+   and type scale from one place per tier instead of being re-declared.
+
+     phone     ≤ 767.98px    stacked hero, tabs on a second header row
+     tablet    768 – 1199.98 stacked hero below 1024, side-by-side above
+     desktop   1200 – 1599.98  the existing design, unchanged
+     large     ≥ 1600px      everything scales up; layout stays edge-to-edge
+
+   The desktop tier is the baseline: its values live in :root so the design
+   renders identically to before if a query never matches.
+   =========================================================================== */
+
+:root {
+  /* Animated head — see .profile-photo-placeholder / .group25-img */
+  --head-w: 180px;
+  --head-h: 240px;
+  --head-img-w: 130px;
+  --head-img-top: 30px;
+  --head-img-left: 25px;
+  --head-oval-w: 300px;
+  --head-oval-h: 600px;
+
+  --hero-pad: 32px;
+  --hero-gap: 2rem;
+}
+
+.hero {
+  padding: var(--hero-pad) !important;
+}
+
+/* ── Large screens ─────────────────────────────────────────────────────────
+   Scale up rather than capping width, so the full-bleed bordered design still
+   feels made for the screen instead of stretched across it. */
+@media (min-width: 1600px) {
+  :root {
+    --head-w: 240px;
+    --head-h: 320px;
+    --head-img-w: 174px;
+    --head-img-top: 40px;
+    --head-img-left: 33px;
+    --head-oval-w: 400px;
+    --head-oval-h: 800px;
+
+    --hero-pad: 56px;
+    --hero-gap: 3.5rem;
+  }
+
+  .navbar { height: 64px; }
+  .hero h1 { font-size: 4.25rem; }
+  .hero-tagline { font-size: 0.8rem; }
+  .about-text { font-size: 1.35rem; }
+  .projects-headline { font-size: 2.6rem; }
+  .ticker-strip { height: 40px; }
+}
+
+/* ── Tablet ────────────────────────────────────────────────────────────────
+   Covers iPad portrait and landscape. */
+@media (min-width: 768px) and (max-width: 1199.98px) {
+  :root {
+    --head-w: 155px;
+    --head-h: 205px;
+    --head-img-w: 112px;
+    --head-img-top: 26px;
+    --head-img-left: 21px;
+    --head-oval-w: 260px;
+    --head-oval-h: 520px;
+
+    --hero-pad: 26px;
+    --hero-gap: 1.5rem;
+  }
+
+  .hero h1 { font-size: 2.9rem; }
+  .projects-headline { font-size: 1.85rem; }
+  .portfolio-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* ── Stacked hero ──────────────────────────────────────────────────────────
+   Below 1024px the head and the copy no longer fit comfortably side by side:
+   the head crowded the heading and made it hard to read. column-reverse puts
+   the copy above the head without touching the DOM order, so the head stays
+   the first element for screen readers to skip past. */
+@media (max-width: 1023.98px) {
+  .hero-inner {
+    flex-direction: column-reverse;
+    align-items: center;
+    text-align: center;
+    gap: var(--hero-gap);
+    padding-left: 0;
+  }
+
+  .hero-copy {
+    margin-left: 0;
+    max-width: 100%;
+  }
+
+  .hero-copy .hero-chat-btn { margin-top: 0.25rem; }
+
+  /* The desktop nudge would push the head into the section below once stacked. */
+  .hero-inner app-animated-head { transform: none; }
+}
+
+/* ── Phone ─────────────────────────────────────────────────────────────────
+   The three nav tabs previously vanished entirely below 768px, leaving no way
+   to reach Portfolio or Art. They now wrap onto a full-width second row,
+   split into equal cells with the same 1px dividers the rest of the site uses. */
+@media (max-width: 767.98px) {
+  :root {
+    --head-w: 132px;
+    --head-h: 176px;
+    --head-img-w: 95px;
+    --head-img-top: 22px;
+    --head-img-left: 18px;
+    --head-oval-w: 220px;
+    --head-oval-h: 440px;
+
+    --hero-pad: 20px;
+    --hero-gap: 1.25rem;
+  }
+
+  /* Header becomes two rows: brand + Hire me, then the tabs. */
+  .navbar { height: auto; }
+
+  .header-row { flex-wrap: wrap; }
+
+  .header-left { flex: 1 1 auto; min-width: 0; }
+
+  .logo-brand-section {
+    min-height: 48px;
+    border-right: none;
+  }
+
+  .navbar-brand { font-size: 0.9rem; }
+
+  .header-right { flex: 0 0 auto; }
+
+  .header-right .btn-outline-light {
+    min-height: 48px;
+    border-left: 1px solid #C8C4BE;
+    white-space: nowrap;
+  }
+
+  /* Second row. `order` moves it below without reordering the markup. */
+  .header-center {
+    order: 3;
+    flex: 0 0 100%;
+    width: 100%;
+    border-right: none;
+    border-top: 1px solid #C8C4BE;
+  }
+
+  /* Bootstrap's d-none/d-md-flex no longer hides this — visibility is ours. */
+  .header-center .nav {
+    display: flex !important;
+    width: 100%;
+  }
+
+  .header-center .nav .nav-link {
+    flex: 1 1 0;
+    justify-content: center;
+    min-height: 44px;      /* comfortable tap target */
+    padding: 0 6px;
+    font-size: 0.62rem;
+    text-align: center;
+  }
+
+  /* Type and rhythm */
+  .hero h1 { font-size: 2.1rem; line-height: 1.15; }
+  .hero-tagline { font-size: 0.6rem; }
+  .about-text { font-size: 1rem; }
+  .projects-headline { font-size: 1.5rem; }
+
+  /* Note: .project-row, .projects-intro, .art-lb-body and the pd-grid family
+     already collapse to one column in the existing 767.98px queries above, and
+     the art masonry derives its column count from live page width at runtime.
+     Nothing further needed here — and side padding is deliberately left at the
+     established 32px so these sections stay aligned with .project-meta. */
+}
+
+/* Very narrow phones (iPhone SE and similar). */
+@media (max-width: 359.98px) {
+  .header-center .nav .nav-link { font-size: 0.55rem; padding: 0 3px; }
+  .hero h1 { font-size: 1.8rem; }
 }

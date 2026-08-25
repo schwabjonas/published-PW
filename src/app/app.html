@@ -14,7 +14,10 @@
       </div>
 
       <div class="header-center d-flex align-items-center justify-content-center">
-        <nav class="nav d-none d-md-flex gap-3">
+        <!-- Visibility is handled in styles.css, not by Bootstrap's display
+             utilities: on phones this nav becomes a full-width second header
+             row rather than disappearing. -->
+        <nav class="nav d-flex gap-3">
           <a class="nav-link text-secondary" routerLink="/" routerLinkActive="nav-link-active" [routerLinkActiveOptions]="{ exact: true }">Home <span class="link-arrow">↗</span></a>
           <a class="nav-link text-secondary" routerLink="/portfolio" routerLinkActive="nav-link-active">Portfolio <span class="link-arrow">↗</span></a>
           <a class="nav-link text-secondary" routerLink="/art" routerLinkActive="nav-link-active">Art <span class="link-arrow">↗</span></a>
