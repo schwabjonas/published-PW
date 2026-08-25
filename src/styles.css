@@ -230,7 +230,9 @@ app-art > .art-page {
   gap: 0;
   padding: 0;
   align-items: stretch !important;
-  border-right: 1px solid #C8C4BE;
+  /* No border here: .logo-brand-section is this wrapper's only child and draws
+     the divider itself. Both having one put two 1px lines side by side, which
+     read as a single 2px rule. */
 }
 
 .logo-brand-section {
@@ -2417,6 +2419,57 @@ app-chat + footer {
 .pd-cta:hover {
   background: transparent;
   color: #F2F2F0;
+}
+
+/* ---------------------------------------------------------------------------
+   Trailing-arrow microinteraction
+   ---------------------------------------------------------------------------
+   Arrows at the end of a link drift the way they point on hover, so the link
+   reads as "goes somewhere". Diagonal arrows travel up-and-right; the plain
+   right arrow only moves right, since sliding it upward would fight the
+   direction it points.
+
+   inline-block is required — transform has no effect on inline elements.
+   The movement is small on purpose: enough to notice, not enough to reflow.
+   --------------------------------------------------------------------------- */
+.link-arrow,
+.pd-arrow,
+.pd-section-ext {
+  display: inline-block;
+  transition: transform 180ms cubic-bezier(0.33, 1, 0.68, 1);
+  will-change: transform;
+}
+
+/* Diagonal (↗) — travels up and to the right. */
+.nav-link:hover .link-arrow,
+.pd-cta:hover .pd-arrow,
+.pd-meta-link:hover .pd-arrow,
+.pd-section-ext:hover {
+  transform: translate(2px, -2px);
+}
+
+/* Horizontal (→) — travels right only. Hovering anywhere on the card row
+   moves it, since the whole row is the link. */
+.project-row:hover .link-arrow {
+  transform: translateX(4px);
+}
+
+/* Respect a stated preference for less motion: keep the colour-change
+   affordance, drop the travel. */
+@media (prefers-reduced-motion: reduce) {
+  .link-arrow,
+  .pd-arrow,
+  .pd-section-ext {
+    transition: none;
+  }
+
+  .nav-link:hover .link-arrow,
+  .pd-cta:hover .pd-arrow,
+  .pd-meta-link:hover .pd-arrow,
+  .pd-section-ext:hover,
+  .project-row:hover .link-arrow {
+    transform: none;
+  }
 }
 
 /* Meta panel (right column) */

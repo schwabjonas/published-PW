@@ -5,7 +5,13 @@
   <title>Jonas Schwab</title>
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/png" href="assets/icons/Logo.png">
+  <!-- Root-absolute on purpose: these are relative-resolved per page, so a bare
+       "favicon.ico" would 404 on prerendered subpaths like /portfolio/.
+       The icons are letterboxed squares — pointing straight at the tall
+       Logo.png made the browser squash it into the square tab slot. -->
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" href="/icon-512.png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 </head>
 <body>
   <app-root></app-root>
