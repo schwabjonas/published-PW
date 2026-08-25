@@ -1,0 +1,135 @@
+<section class="portfolio art-page">
+  <div class="portfolio-header-bar">
+    <span class="portfolio-section-label">Art Portfolio — Jonas Schwab</span>
+  </div>
+
+  <div class="portfolio-statement">
+    <div class="portfolio-statement-left">
+      <h1 class="art-headline">Art as a<br>practice,<br>not a<br>performance.</h1>
+    </div>
+    <div class="portfolio-statement-right art-statement-right">
+      <p class="text-muted">I re-immersed myself in art after high school as a way to stay mentally healthy and creatively alive. As a kid I was a die-hard realism artist. As an adult I've expanded into abstract, colorful work in whatever mediums I can get my hands on.</p>
+      <a class="btn-ig" href="https://instagram.com/plinthnabis" target="_blank" rel="noopener">
+        <img src="/assets/icons/instagram-icon.svg" alt="" />@plinthnabis on Instagram
+      </a>
+    </div>
+  </div>
+
+  <div class="art-filter-bar">
+    <div class="art-filter-options">
+      <button
+        type="button"
+        class="art-filter-chip"
+        [class.is-active]="activeMedium() === null"
+        (click)="setFilter(null)"
+      >All</button>
+      @for (medium of filters(); track medium) {
+        <button
+          type="button"
+          class="art-filter-chip"
+          [class.is-active]="activeMedium() === medium"
+          (click)="setFilter(medium)"
+        >{{ medium }}</button>
+      }
+    </div>
+    <span class="art-filter-count">{{ pad(filtered().length) }} Works</span>
+  </div>
+
+  <div class="art-masonry" #grid [style.height.px]="masonry().height">
+    @for (item of masonry().items; track item.url) {
+      <button
+        type="button"
+        class="art-item"
+        [style.left.px]="item.left"
+        [style.top.px]="item.top"
+        [style.width.px]="item.width"
+        [style.height.px]="item.height"
+        (click)="open(item.index)"
+        [attr.aria-label]="item.title || item.name"
+      >
+        <img [src]="item.url" [alt]="item.title || item.name" loading="lazy" />
+      </button>
+    }
+  </div>
+</section>
+
+@if (selected(); as art) {
+  <div class="art-lb" (click)="close()">
+    <div class="art-lb-inner" (click)="$event.stopPropagation()">
+      <!-- Top bar -->
+      <header class="art-lb-top">
+        <span class="art-lb-eyebrow">Art Portfolio</span>
+        <span class="art-lb-counter">{{ pad(position()) }} / {{ pad(filtered().length) }}</span>
+        <button type="button" class="art-lb-close" (click)="close()">
+          <span class="art-lb-x">✕</span> Close
+        </button>
+      </header>
+
+      <!-- Body: image + metadata panel -->
+      <div class="art-lb-body">
+        <div class="art-lb-stage">
+          <img [src]="art.url" [alt]="art.title || art.name" />
+        </div>
+
+        <aside class="art-lb-panel">
+          <div class="art-lb-titleblock">
+            <span class="art-lb-label">Title</span>
+            <h2 class="art-lb-title">{{ orUnknown(art.title) }}</h2>
+          </div>
+
+          <dl class="art-lb-meta">
+            <div class="art-lb-metarow">
+              <dt class="art-lb-label">Medium</dt>
+              <dd class="art-lb-value">{{ orUnknown(art.medium) }}</dd>
+            </div>
+            <div class="art-lb-metarow">
+              <dt class="art-lb-label">Dimensions</dt>
+              <dd class="art-lb-value">{{ orUnknown(art.dimensions) }}</dd>
+            </div>
+            <div class="art-lb-metarow">
+              <dt class="art-lb-label">Started</dt>
+              <dd class="art-lb-value">{{ displayDate(art.start_date) }}</dd>
+            </div>
+            <div class="art-lb-metarow">
+              <dt class="art-lb-label">Completed</dt>
+              <dd class="art-lb-value">{{ displayDate(art.end_date) }}</dd>
+            </div>
+          </dl>
+
+          <div class="art-lb-descblock">
+            <span class="art-lb-label">Description</span>
+            <p class="art-lb-desc">{{ orUnknown(art.description) }}</p>
+          </div>
+
+          <!-- Filmstrip: click through the pieces -->
+          <div class="art-lb-strip">
+            @for (img of filtered(); track img.url; let i = $index) {
+              <button
+                type="button"
+                class="art-lb-thumb"
+                [class.is-active]="i === selectedIndex()"
+                (click)="open(i)"
+                [attr.aria-label]="img.title || img.name"
+              >
+                <img [src]="img.url" [alt]="img.title || img.name" loading="lazy" />
+              </button>
+            }
+          </div>
+        </aside>
+      </div>
+
+      <!-- Bottom bar: prev / current meta / next -->
+      <footer class="art-lb-bottom">
+        <button type="button" class="art-lb-nav" (click)="step(-1)">
+          <span class="art-lb-arrow">←</span>
+          <span class="art-lb-navtitle">{{ prevArt()?.title || prevArt()?.name }}</span>
+        </button>
+        <span class="art-lb-currentmeta">{{ currentMeta() }}</span>
+        <button type="button" class="art-lb-nav art-lb-nav-next" (click)="step(1)">
+          <span class="art-lb-navtitle">{{ nextArt()?.title || nextArt()?.name }}</span>
+          <span class="art-lb-arrow">→</span>
+        </button>
+      </footer>
+    </div>
+  </div>
+}

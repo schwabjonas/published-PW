@@ -1,0 +1,21 @@
+<div class="profile-photo-placeholder" (click)="onHeadClick()">
+  <img src="/assets/icons/Animation/Base 1 - Eyes Background.png" alt="" class="group25-img" />
+  <img #eyeball src="/assets/icons/Animation/Base 1 - Eyes Open-1.png" alt="" class="group25-img group25-eyes" />
+  <img #eyeball src="/assets/icons/Animation/Base 1 - Eyes Open-2.png" alt="" class="group25-img group25-eyes" />
+  <img #blinkFrame data-frame="open" src="/assets/icons/Animation/Base 1 - Eyes Open.png" alt="" class="group25-img" />
+  <img #blinkFrame data-frame="squint" src="/assets/icons/Animation/Base 3 - Squinting.png" alt="" class="group25-img" style="visibility: hidden" />
+  <img #blinkFrame data-frame="closed" src="/assets/icons/Animation/Base 2 - Eyes Closed.png" alt="" class="group25-img" style="visibility: hidden" />
+  <img #mouth src="/assets/icons/Animation/Base X - Closed Straight.png" alt="" class="group25-img" />
+  <img #blinkFrame data-frame="open" src="/assets/icons/Animation/Eyes 1 - Open.png" alt="" class="group25-img" />
+  <img #blinkFrame data-frame="squint" src="/assets/icons/Animation/Eyes 3 - Squinting.png" alt="" class="group25-img" style="visibility: hidden" />
+  <img #blinkFrame data-frame="closed" src="/assets/icons/Animation/Eyes 2 - Closed.png" alt="" class="group25-img" style="visibility: hidden" />
+</div>
+
+<!-- Sandbox harness: visible only with ?avatardebug in the URL.
+     A generated test clip lives at frontend/public/test-voice.wav (swap freely). -->
+@if (debug()) {
+  <div class="avatar-test">
+    <audio #testAudio src="/test-voice.wav" preload="auto"></audio>
+    <button type="button" (click)="playTest()">▶ Test Audio</button>
+  </div>
+}

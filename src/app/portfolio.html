@@ -1,0 +1,73 @@
+<section class="projects">
+  <div class="projects-header-bar">
+    <span class="projects-label">Portfolio — My Work</span>
+  </div>
+
+  <!-- Moved from the home page's "Portfolio — My Work" section -->
+  <div class="projects-intro">
+    <div class="projects-intro-left">
+      <h1 class="projects-headline">Passionate about building unique, accessible digital experiences.</h1>
+    </div>
+    <div class="projects-intro-right">
+      <p class="projects-about">Whether it's creating elegant interfaces, developing robust backends, or just experimenting with fun projects — I enjoy every aspect of the process.</p>
+      <div class="services-cta-row">
+        <a class="btn-svc" href="https://github.com/schwabjonas" target="_blank" rel="noopener noreferrer">
+          <img src="/assets/icons/github-Icon.svg" alt="" />Github
+        </a>
+        <a class="btn-svc btn-svc-filled" routerLink="/" fragment="about">
+          <img src="/assets/icons/mail-Icon.svg" alt="" />Hire me
+        </a>
+      </div>
+    </div>
+  </div>
+
+  @for (group of groups(); track group.category) {
+    <div class="projects-category-bar">
+      <span class="projects-category-label">{{ group.category }}</span>
+      <span class="projects-category-count">{{ group.projects.length }} {{ group.projects.length === 1 ? 'project' : 'projects' }}</span>
+    </div>
+
+    @if (description(group.category); as desc) {
+      <div class="projects-category-intro">
+        <p class="projects-category-desc">{{ desc }}</p>
+      </div>
+    }
+
+    @for (project of group.projects; track project.slug; let i = $index) {
+      <a class="project-row" [routerLink]="['/portfolio', project.slug]">
+        <div class="project-meta">
+          <span class="project-number">{{ number(i) }}</span>
+          <span class="project-year">{{ year(project) }}</span>
+        </div>
+
+        @if (project.image_url) {
+          <div class="project-image" [style.background-image]="'url(' + project.image_url + ')'"></div>
+        } @else {
+          <div class="project-image project-image-empty"></div>
+        }
+
+        <div class="project-content">
+          <div class="project-title-row">
+            <h2 class="project-title">{{ project.name }}</h2>
+            <span class="project-status" [class]="'project-status-' + project.status">{{ project.status_label }}</span>
+          </div>
+          <p class="project-desc">{{ project.description }}</p>
+          <div class="project-tags">
+            @for (tech of project.stack; track tech) {
+              <span>{{ tech }}</span>
+            }
+          </div>
+          <div class="project-links">
+            <span class="project-link">View project →</span>
+          </div>
+        </div>
+      </a>
+    }
+  } @empty {
+    @if (loaded()) {
+      <div class="projects-empty">
+        <span class="projects-label">No projects published yet.</span>
+      </div>
+    }
+  }
+</section>

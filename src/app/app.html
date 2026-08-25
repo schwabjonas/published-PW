@@ -1,0 +1,59 @@
+<main class="site-shell">
+  <header class="navbar navbar-expand-md navbar-dark">
+    <div class="header-row d-flex align-items-stretch justify-content-between w-100">
+      <div class="header-left">
+        <div class="logo-brand-section">
+          <div class="logo-container">
+            <img src="/assets/icons/Logo.png" alt="Logo" class="logo-icon" />
+          </div>
+          <a class="navbar-brand fw-bold text-uppercase" routerLink="/">
+            <span>Jonas</span>
+            <span>Schwab</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="header-center d-flex align-items-center justify-content-center">
+        <nav class="nav d-none d-md-flex gap-3">
+          <a class="nav-link text-secondary" routerLink="/" routerLinkActive="nav-link-active" [routerLinkActiveOptions]="{ exact: true }">Home ↗</a>
+          <a class="nav-link text-secondary" routerLink="/portfolio" routerLinkActive="nav-link-active">Portfolio ↗</a>
+          <a class="nav-link text-secondary" routerLink="/art" routerLinkActive="nav-link-active">Art ↗</a>
+        </nav>
+      </div>
+
+      <div class="header-right d-flex align-items-center gap-3 justify-content-end">
+        <div class="header-links d-none d-md-flex align-items-center gap-2">
+          <a class="icon-link" href="https://github.com/schwabjonas" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+            <img src="/assets/icons/github-Icon.svg" alt="GitHub" />
+          </a>
+          <a class="icon-link" href="https://www.linkedin.com/in/jonas-georg-schwab/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+            <img src="/assets/icons/linkedin-Icon.svg" alt="LinkedIn" />
+          </a>
+        </div>
+        <a class="btn btn-outline-light btn-sm text-uppercase d-flex align-items-center gap-2" routerLink="/" fragment="about">
+          <img src="/assets/icons/mail-Icon.svg" alt="Mail" class="btn-icon" />
+          <span>Hire me</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <router-outlet></router-outlet>
+
+  <footer class="py-4 border-top border-white border-opacity-10">
+    <div class="container d-flex flex-column flex-md-row align-items-center justify-content-center text-muted small gap-3">
+      <span>© 2026 Jonas Schwab. All rights reserved.</span>
+      <div class="d-flex gap-3">
+        <a class="footer-icon-link" href="https://www.linkedin.com/in/jonas-georg-schwab/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+          <img src="/assets/icons/linkedin-Icon.svg" alt="LinkedIn" />
+        </a>
+        <a class="footer-icon-link" href="https://github.com/schwabjonas" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+          <img src="/assets/icons/github-Icon.svg" alt="GitHub" />
+        </a>
+        <a class="footer-icon-link" href="https://www.instagram.com/plurigenos/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+          <img src="/assets/icons/instagram-icon.svg" alt="Instagram" />
+        </a>
+      </div>
+    </div>
+  </footer>
+</main>

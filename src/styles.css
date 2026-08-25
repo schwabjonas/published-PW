@@ -1,0 +1,2639 @@
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap");
+
+:root {
+  color-scheme: dark;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: #f8f9fa;
+  background-color: #0A0A0A;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Space Grotesk", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+
+h1, .display-4, .display-6 {
+  font-weight: 700;
+}
+
+h2, h3, h4 {
+  font-weight: 600;
+}
+
+h5, h6 {
+  font-weight: 500;
+}
+
+body {
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-weight: 400;
+}
+
+.text-uppercase,
+.nav-link,
+.small,
+.badge,
+.label {
+  font-family: "Space Mono", monospace;
+  font-optical-sizing: auto;
+  font-style: normal;
+  font-weight: 400;
+}
+
+html, body {
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: #0A0A0A;
+}
+
+body {
+  line-height: 1.6;
+  background-image: radial-gradient(circle at top, rgba(255,255,255,.04), transparent 22%),
+    linear-gradient(180deg, #0A0A0A 0%, #0f1625 38%, #111827 100%);
+}
+
+.site-shell {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Home page: fill the space between header and footer so the last section
+   (About) can stretch down to just above the footer. Scoped to app-home so
+   other routes are unaffected. */
+app-home {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+app-home .about-section {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+app-home .about-section .about-grid {
+  flex: 1 1 auto;
+}
+
+/* Art page: fill the space between header and footer so the footer always
+   touches the bottom of the viewport, even when the masonry is short. app-art
+   grows to fill the shell; the .art-page section grows inside it, so the gap
+   opens up below the lowest-reaching column (a space-between spacer that pushes
+   the footer down). Scoped to app-art so other routes are unaffected. */
+app-art {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+app-art > .art-page {
+  flex: 1 1 auto;
+}
+
+.navbar {
+  --header-pad: clamp(12px, 1.5vw, 20px);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  height: 52px;
+  padding: 0 !important;
+  background: #F2F2F0;
+  color: #0A0A0A;
+  backdrop-filter: blur(18px);
+  border-bottom: 1px solid #C8C4BE !important;
+  box-sizing: border-box;
+}
+
+.header-row {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+}
+
+.header-left,
+.header-center,
+.header-right {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.header-left {
+  gap: 0;
+  padding: 0;
+  align-items: stretch !important;
+  border-right: 1px solid #C8C4BE;
+}
+
+.logo-brand-section {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  gap: 12px;
+  padding: 0 var(--header-pad);
+  border-right: 1px solid #C8C4BE;
+  flex-shrink: 0;
+}
+
+.header-center {
+  flex: 1 1 auto;
+  justify-content: center;
+  align-items: stretch !important;
+  border-right: 1px solid #C8C4BE;
+  padding: 0;
+}
+
+.header-center .nav {
+  height: 100%;
+  align-items: stretch !important;
+  gap: 0 !important;
+}
+
+.header-center .nav .nav-link {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  padding: 0 var(--header-pad);
+  border-right: 1px solid #C8C4BE;
+}
+
+.header-center .nav .nav-link:last-child {
+  border-right: none;
+}
+
+.header-right {
+  gap: 0 !important;
+  justify-content: flex-end;
+  align-items: stretch !important;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.header-right .btn-outline-light {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  padding: 0 var(--header-pad);
+  border-radius: 0 !important;
+  margin: 0;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 25px;
+  height: 25px;
+  flex-shrink: 0;
+}
+
+.logo-icon {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.navbar-brand {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+  font-size: 0.75rem;
+  white-space: normal;
+  padding: 0;
+}
+
+.brand-group {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.brand-tagline {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+  font-size: 0.65rem;
+  letter-spacing: 0.06em;
+  color: #C4C4C2;
+  font-weight: 400;
+  padding: 0 var(--header-pad);
+}
+
+.brand-tagline span {
+  display: block;
+  line-height: 1.1;
+}
+
+.brand-tagline span {
+  display: block;
+  line-height: 1.1;
+}
+
+.header-links {
+  display: flex;
+  align-items: stretch !important;
+  height: 100%;
+  gap: 0 !important;
+  border-right: 1px solid #C8C4BE;
+}
+
+.header-links .icon-link {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  padding: 0 var(--header-pad);
+  transition: color 0.2s ease, background-color 0.2s ease;
+}
+
+.btn-outline-light {
+  transition: color 0.2s ease, background-color 0.2s ease;
+}
+
+.header-links .icon-link:not(:last-child) {
+  border-right: 1px solid #C8C4BE;
+}
+
+.navbar-brand span {
+  display: block;
+  font-weight: 300;
+  padding-bottom: 3px;
+}
+
+.icon-link img,
+.btn-icon {
+  width: 16px;
+  height: 16px;
+}
+
+.btn-outline-light {
+  color: #0A0A0A !important;
+  border-color: #0A0A0A !important;
+}
+
+.navbar-brand span {
+  display: block;
+  font-weight: 300;
+  padding-bottom: 3px;
+}
+
+
+.nav-link {
+  transition: color 0.2s ease, background-color 0.2s ease;
+}
+
+.header-center .nav .nav-link:hover,
+.header-center .nav .nav-link:focus {
+  background-color: #0A0A0A;
+  color: #F2F2F0 !important;
+}
+
+.nav-link,
+.navbar-brand,
+.btn-outline-light,
+.navbar .btn {
+  color: #0A0A0A !important;
+}
+
+.nav-link:hover,
+.nav-link:focus {
+  color: #0A0A0A !important;
+}
+
+.header-links .icon-link:hover,
+.header-links .icon-link:focus,
+.btn-outline-light:hover,
+.btn-outline-light:focus {
+  background-color: #0A0A0A !important;
+  background: #0A0A0A !important;
+  color: #F2F2F0 !important;
+}
+
+/* keep the dark icons visible against the dark hover background */
+.header-links .icon-link:hover img,
+.header-links .icon-link:focus img,
+.btn-outline-light:hover .btn-icon,
+.btn-outline-light:focus .btn-icon {
+  filter: brightness(0) invert(0.96);
+}
+
+.hero {
+  position: relative;
+  overflow: hidden;
+  background: #0A0A0A;
+  padding-top: 32px !important;
+  padding-bottom: 32px !important;
+  padding-left: 32px !important;
+  padding-right: 32px !important;
+}
+
+.hero-wave {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: auto;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle at 18% 8%, rgba(255,255,255,.18), transparent 16%),
+    radial-gradient(circle at 85% 16%, rgba(255,255,255,.1), transparent 14%),
+    linear-gradient(180deg, transparent 0%, rgba(255,255,255,.03) 55%, transparent 100%);
+  pointer-events: none;
+}
+
+.hero .container,
+.portfolio .container {
+  position: relative;
+  z-index: 1;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  max-width: 100% !important;
+}
+
+.hero h1,
+.hero h2,
+.portfolio h2 {
+  color: #ffffff;
+}
+
+.hero-tagline {
+  color: #C4C4C2 !important;
+}
+
+.hero-chat-btn {
+  /* Sits in normal flow below the hero heading (inline-flex so it hugs its
+     content and left-aligns under the text). */
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 20px;
+  font-family: "Space Mono", monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #F2F2F0;
+  border: 1.5px solid rgba(255, 255, 255, 0.4);
+  text-decoration: none;
+  transition: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.hero-chat-btn img {
+  width: 14px;
+  height: 14px;
+  filter: invert(1);
+}
+
+.hero-chat-btn:hover {
+  background: #F2F2F0;
+  color: #0A0A0A;
+  border-color: #F2F2F0;
+}
+
+.hero-chat-btn:hover img {
+  filter: none;
+}
+
+.hero p,
+.hero .lead,
+.portfolio p,
+.card-dark p,
+.card-dark li,
+.text-muted {
+  color: #c3c8d7;
+}
+
+.hero-panel {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 26px 70px rgba(0, 0, 0, 0.22);
+}
+
+.feature-card,
+.card-dark {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.card-dark .card-body {
+  padding: 2rem;
+}
+
+.card-dark h3,
+.feature-card h3 {
+  color: #ffffff;
+}
+
+.card-dark ul {
+  margin-top: 1rem;
+  padding-left: 1.1rem;
+}
+
+.card-dark li::marker {
+  color: #9ca3af;
+}
+
+.portfolio {
+  background: #0A0A0A;
+  overflow: hidden;
+}
+
+.portfolio .display-6 {
+  text-shadow: 0 18px 45px rgba(0, 0, 0, 0.3);
+}
+
+.art-card {
+  min-height: 15rem;
+  background-size: cover;
+  background-position: center;
+  box-shadow: 0 28px 90px rgba(0, 0, 0, 0.32);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+footer {
+  background: #0A0A0A;
+}
+
+footer .text-muted,
+footer span {
+  color: #F2F2F0 !important;
+}
+
+.footer-icon-link img {
+  filter: brightness(0) invert(0.96);
+}
+
+footer .container {
+  flex-direction: row !important;
+  justify-content: center !important;
+  align-items: center !important;
+  max-width: 100% !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  padding-top: 11.5px !important;
+  padding-bottom: 11.5px !important;
+}
+
+.footer-icon-link img {
+  width: 18px;
+  height: 18px;
+  display: block;
+}
+
+button,
+a.btn {
+  border-width: 1.5px;
+}
+
+.text-uppercase {
+  letter-spacing: 0.18em;
+}
+
+.btn-outline-light {
+  color: #0A0A0A !important;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* ── Group 39 divider ── */
+.group39-divider {
+  position: relative;
+  height: 0;
+  z-index: 2;
+}
+
+.group39-img {
+  position: absolute;
+  width: 200px;
+  height: auto;
+  top: -10px;
+  left: 57px;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* ── Group 40 divider ── */
+.group40-divider {
+  position: relative;
+  height: 0;
+  z-index: 2;
+}
+
+.group40-img {
+  position: absolute;
+  width: 250px;
+  height: auto;
+  top: -30px;
+  left: 32px;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* ── Ticker strip ── */
+.hero-inner {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  position: relative;
+  z-index: 1;
+  padding-left: 32px;
+}
+
+/* Nudge the floating head down in the home hero (scoped so the chat page,
+   which uses .chat-hero-inner, is unaffected). */
+.hero-inner app-animated-head {
+  transform: translateY(24px);
+
+}
+
+/* Shift the oval backdrop behind the head down 15px / left 5px (home only).
+   Overrides the base translate(-50%, -50%) that centers it. */
+.hero-inner .profile-photo-placeholder::before {
+  transform: translate(calc(-50% - 5px), calc(-50% + 15px));
+}
+
+/* Keep the intro copy above the animated head's layers (z-index 2). */
+.hero-copy {
+  position: relative;
+  z-index: 3;
+  margin-left: 20px;
+}
+
+.profile-photo-placeholder {
+  position: relative;
+  width: 180px;
+  height: 240px;
+  flex-shrink: 0;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+/* Soft oval backdrop behind the head: page-background color fading to
+   transparent, so the avatar stands out against the spiral field. Rendered
+   first (source order) so it sits behind the face image layers. */
+.profile-photo-placeholder::before {
+  content: "";
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  width: 300px;
+  height: 600px;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(ellipse at center, #0A0A0A 35%, transparent 75%);
+  z-index: 1; /* in front of the head layers (z-2) for now */
+  pointer-events: none;
+}
+
+.group25-img {
+  position: absolute;
+  z-index: 2; /* head layers sit above the oval backdrop (z-1) */
+  top: 30px;
+  left: 25px;
+  width: 130px;
+  height: auto;
+  pointer-events: none;
+}
+
+.group25-eyes {
+  transition: transform 0.12s ease-out;
+}
+
+.ticker-strip {
+  overflow: hidden;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  background: #0A0A0A;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+}
+
+.ticker-track {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  animation: ticker-scroll 32s linear infinite;
+  font-family: "Space Mono", monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.ticker-sep {
+  color: rgba(255, 255, 255, 0.2);
+}
+
+.ticker-highlight {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+@keyframes ticker-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* ── Services section ── */
+.services-section {
+  background: #F2F2F0;
+}
+
+.services-header-bar {
+  display: flex;
+  align-items: center;
+  padding: 10px 32px;
+  border-bottom: 1px solid #C4C4C2;
+}
+
+.services-section-label {
+  font-family: "Space Mono", monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #0A0A0A;
+  text-decoration: none;
+}
+
+a.services-section-label:hover {
+  text-decoration: underline;
+}
+
+.services-statement {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-bottom: 1px solid #C4C4C2;
+}
+
+.services-statement-left {
+  padding: 3rem 2rem 3rem 32px;
+  border-right: 1px solid #C4C4C2;
+}
+
+.services-headline {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 2.25rem;
+  font-weight: 700;
+  color: #0A0A0A;
+  line-height: 1.15;
+  margin: 0;
+}
+
+.services-statement-right {
+  padding: 3rem 32px 3rem 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.services-about {
+  font-size: 0.875rem;
+  color: #6b6b6b;
+  line-height: 1.7;
+  margin-bottom: 2rem;
+}
+
+.services-cta-row {
+  display: flex;
+  gap: 10px;
+}
+
+.services-cta-row .btn-svc-filled {
+  margin-left: auto;
+}
+
+.btn-svc {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 9px 18px;
+  font-family: "Space Mono", monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #0A0A0A;
+  border: 1.5px solid #0A0A0A;
+  text-decoration: none;
+  background: transparent;
+}
+
+.btn-svc img {
+  width: 13px;
+  height: 13px;
+}
+
+.btn-svc-filled {
+  background: #0A0A0A;
+  color: #F2F2F0;
+}
+
+.btn-svc-filled img {
+  filter: invert(1);
+}
+
+.service-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-bottom: 1px solid #C4C4C2;
+}
+
+.service-row-left {
+  padding: 2.5rem 2rem 2.5rem 32px;
+  border-right: 1px solid #C4C4C2;
+}
+
+.service-row-right {
+  padding: 2.5rem 32px 2.5rem 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.service-number {
+  font-family: "Space Mono", monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.14em;
+  color: #C4C4C2;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+
+.service-title {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #0A0A0A;
+  margin-bottom: 0.75rem;
+}
+
+.service-desc {
+  font-size: 0.875rem;
+  color: #6b6b6b;
+  line-height: 1.65;
+  margin: 0;
+}
+
+.service-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.5rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.service-list li {
+  font-size: 0.875rem;
+  color: #0A0A0A;
+  padding-left: 1.1rem;
+  position: relative;
+}
+
+.service-list li::before {
+  content: "–";
+  position: absolute;
+  left: 0;
+  color: #0A0A0A;
+}
+
+.service-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.service-tags span {
+  font-family: "Space Mono", monospace;
+  font-size: 0.58rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #0A0A0A;
+  border: 1px solid #C4C4C2;
+  padding: 4px 10px;
+}
+
+/* ── About section (home page) ── */
+.about-section {
+  background: #F2F2F0;
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1.7fr 1fr;
+  border-bottom: 1px solid #C4C4C2;
+}
+
+.about-main {
+  padding: 3.5rem 2.5rem 3.5rem 32px;
+  border-right: 1px solid #C4C4C2;
+}
+
+.about-label {
+  display: block;
+  font-family: "Space Mono", monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #9a9a97;
+  margin-bottom: 1.75rem;
+}
+
+.about-text {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: clamp(1.35rem, 2vw, 1.7rem);
+  font-weight: 400;
+  color: #0A0A0A;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.about-side {
+  padding: 3.5rem 32px 3.5rem 2.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+.about-side-block .about-label {
+  margin-bottom: 1.1rem;
+}
+
+.about-link,
+.about-page-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: "Space Mono", monospace;
+  font-size: 0.78rem;
+  letter-spacing: 0.02em;
+  color: #0A0A0A;
+  text-decoration: none;
+  padding: 5px 0;
+}
+
+.about-link img {
+  width: 15px;
+  height: 15px;
+}
+
+.about-link:hover,
+.about-page-link:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 767.98px) {
+  .about-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .about-main {
+    border-right: none;
+    border-bottom: 1px solid #C4C4C2;
+  }
+}
+
+/* ── Portfolio / Art section ── */
+.portfolio {
+  background: #0A0A0A;
+  overflow: hidden;
+}
+
+.portfolio-header-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 32px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.portfolio-section-label {
+  font-family: "Space Mono", monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.4);
+  text-decoration: none;
+}
+
+a.portfolio-section-label:hover {
+  color: #C4C4C2;
+  text-decoration: underline;
+}
+
+.portfolio-statement {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.portfolio-statement-left {
+  padding: 3rem 2rem 3rem 32px;
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.portfolio-statement-right {
+  padding: 3rem 32px 3rem 2rem;
+  color: #C4C4C2 !important;
+}
+
+.portfolio-statement-right .text-muted {
+  color: #C4C4C2 !important;
+}
+
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.art-card {
+  min-height: 16rem;
+  background-size: cover;
+  background-position: center;
+}
+
+.portfolio .display-6 {
+  text-shadow: 0 18px 45px rgba(0, 0, 0, 0.3);
+}
+
+@media (max-width: 767.98px) {
+  .services-statement,
+  .service-row,
+  .portfolio-statement {
+    grid-template-columns: 1fr;
+  }
+
+  .services-statement-left,
+  .service-row-left,
+  .portfolio-statement-left {
+    border-right: none;
+    border-bottom: 1px solid #C4C4C2;
+  }
+
+  .portfolio-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.py-4 {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+  height: auto;
+}
+
+/* ── Active nav link (current route) — mirrors the hover state ── */
+.header-center .nav .nav-link.nav-link-active {
+  background-color: #0A0A0A;
+  color: #F2F2F0 !important;
+}
+
+/* ── Portfolio page (Apps & Projects) ── */
+.projects {
+  background: #F2F2F0;
+}
+
+.projects-header-bar {
+  display: flex;
+  align-items: center;
+  padding: 10px 32px;
+  border-bottom: 1px solid #C4C4C2;
+}
+
+.projects-label {
+  font-family: "Space Mono", monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #0A0A0A;
+}
+
+.projects-intro {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-bottom: 1px solid #C4C4C2;
+}
+
+.projects-intro-left {
+  padding: 3rem 2rem 3rem 32px;
+  border-right: 1px solid #C4C4C2;
+}
+
+.projects-headline {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 700;
+  color: #0A0A0A;
+  line-height: 1.05;
+  margin: 0;
+}
+
+.projects-intro-right {
+  padding: 3rem 32px 3rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+.projects-about {
+  font-size: 0.875rem;
+  color: #6b6b6b;
+  line-height: 1.7;
+  margin: 0;
+}
+
+.project-row {
+  display: grid;
+  grid-template-columns: 64px minmax(0, 1.15fr) 1.35fr;
+  align-items: stretch;
+  border-bottom: 1px solid #C4C4C2;
+}
+
+.project-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding: 2.5rem 0 2.5rem 32px;
+  border-right: 1px solid #C4C4C2;
+  font-family: "Space Mono", monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.14em;
+}
+
+.project-number {
+  color: #0A0A0A;
+}
+
+.project-year {
+  color: #C4C4C2;
+}
+
+.project-image {
+  min-height: 18rem;
+  background-size: cover;
+  background-position: center;
+  background-color: #e4e4e1;
+  border-right: 1px solid #C4C4C2;
+}
+
+.project-image-empty {
+  background-image: none;
+}
+
+.project-content {
+  padding: 2.5rem 32px 2.5rem 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.project-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.project-title {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #0A0A0A;
+  margin: 0;
+}
+
+.project-status {
+  font-family: "Space Mono", monospace;
+  font-size: 0.55rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border: 1px solid currentColor;
+  white-space: nowrap;
+}
+
+.project-status-live {
+  color: #1f9d55;
+}
+
+.project-status-in-progress {
+  color: #d97706;
+}
+
+.project-status-complete {
+  color: #8a8a87;
+}
+
+.project-desc {
+  font-size: 0.875rem;
+  color: #6b6b6b;
+  line-height: 1.65;
+  margin: 0;
+}
+
+.project-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.project-tags span {
+  font-family: "Space Mono", monospace;
+  font-size: 0.58rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #0A0A0A;
+  border: 1px solid #C4C4C2;
+  padding: 4px 10px;
+}
+
+.project-links {
+  display: flex;
+  gap: 1.5rem;
+  margin-top: 0.25rem;
+}
+
+.project-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-family: "Space Mono", monospace;
+  font-size: 0.62rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #0A0A0A;
+  text-decoration: none;
+}
+
+.project-link img {
+  width: 13px;
+  height: 13px;
+}
+
+.project-link:hover {
+  text-decoration: underline;
+}
+
+/* The whole project row links to its detail page. */
+a.project-row {
+  text-decoration: none;
+  color: inherit;
+  transition: background-color 0.2s ease;
+}
+
+a.project-row:hover {
+  background: #ecece9;
+}
+
+a.project-row:hover .project-link {
+  text-decoration: underline;
+}
+
+.projects-empty {
+  padding: 2.5rem 32px;
+}
+
+/* Category group header on the Portfolio page (e.g. "Front End"). */
+.projects-category-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 32px;
+  background: #e7e6e3;
+  border-bottom: 1px solid #C4C4C2;
+}
+
+.projects-category-label {
+  font-family: "Space Mono", monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #0A0A0A;
+}
+
+.projects-category-count {
+  font-family: "Space Mono", monospace;
+  font-size: 0.58rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #8a8a87;
+}
+
+/* Intro copy under a category header (e.g. the Front-End description).
+   Matches the original home-page .service-desc styling. */
+.projects-category-intro {
+  padding: 2.5rem 32px;
+  border-bottom: 1px solid #C4C4C2;
+}
+
+.projects-category-desc {
+  font-size: 0.875rem;
+  color: #6b6b6b;
+  line-height: 1.65;
+  margin: 0;
+}
+
+/* ── Art page ── */
+.art-page .portfolio-statement-left {
+  display: flex;
+  align-items: center;
+}
+
+.art-headline {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  font-weight: 700;
+  color: #fff;
+  line-height: 1;
+  letter-spacing: -0.01em;
+  margin: 0;
+}
+
+.art-statement-right {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+.btn-ig {
+  display: inline-flex;
+  align-self: flex-start;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  font-family: "Space Mono", monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #F2F2F0;
+  border: 1.5px solid rgba(255, 255, 255, 0.4);
+  text-decoration: none;
+  transition: color 0.2s ease, background-color 0.2s ease;
+}
+
+.btn-ig img {
+  width: 14px;
+  height: 14px;
+  filter: invert(1);
+}
+
+.btn-ig:hover {
+  background: #F2F2F0;
+  color: #0A0A0A;
+}
+
+.btn-ig:hover img {
+  filter: none;
+}
+
+/* Filter bar — sits between the hero statement and the gallery. Cells are
+   divided by hairline borders; the active medium reads as an inverted chip
+   (light fill, dark text), and the work count is pushed to the far right. */
+.art-filter-bar {
+  display: flex;
+  align-items: stretch;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  font-family: "Space Mono", monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  overflow-x: auto;
+}
+
+.art-filter-label {
+  display: flex;
+  align-items: center;
+  padding: 0 32px;
+  white-space: nowrap;
+  color: rgba(255, 255, 255, 0.4);
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.art-filter-options {
+  display: flex;
+  align-items: stretch;
+}
+
+.art-filter-chip {
+  font: inherit;
+  letter-spacing: inherit;
+  text-transform: inherit;
+  padding: 14px 32px;
+  white-space: nowrap;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.4);
+  border: none;
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
+  cursor: pointer;
+  transition: color 0.2s ease, background-color 0.2s ease;
+}
+
+.art-filter-chip:hover {
+  color: #F2F2F0;
+}
+
+.art-filter-chip.is-active {
+  background: #F2F2F0;
+  color: #0A0A0A;
+}
+
+.art-filter-count {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+  padding: 0 32px;
+  white-space: nowrap;
+  color: rgba(255, 255, 255, 0.4);
+  border-left: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Column-based masonry gallery. The layout algorithm in art.ts derives the
+   column count from the live page width and positions each item absolutely;
+   columns tile the width exactly, so there are no gaps between images. */
+.art-masonry {
+  position: relative;
+  width: 100%;
+}
+
+.art-item {
+  position: absolute;
+  overflow: hidden;
+  background: #141414;
+  /* button resets */
+  padding: 0;
+  border: none;
+  margin: 0;
+  cursor: pointer;
+}
+
+.art-item img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  /* The box already matches the image aspect ratio, so nothing is cropped. */
+  object-fit: cover;
+  /* Grid pieces sit fully desaturated; colour returns on hover/focus (and in
+     the detail lightbox, whose image is never given this filter). */
+  filter: saturate(0);
+  /* This is the "mouse leaves" transition: colour drains back to B&W slowly
+     and after a delay, so it trails behind the cursor as it sweeps the grid. */
+  transition: opacity 0.2s ease, transform 0.3s ease, filter 0.9s ease 0.45s;
+}
+
+.art-item:hover img,
+.art-item:focus-visible img {
+  opacity: 0.82;
+  filter: saturate(1);
+  /* Zoom 10% from the centre (default transform-origin); the tile's
+     overflow: hidden keeps it framed in place. */
+  transform: scale(1.1);
+  /* "Mouse enters" transition: colour floods in fast with no delay, so the
+     leading edge is crisp while the trailing fade-out lingers. */
+  transition: opacity 0.2s ease, transform 0.3s ease, filter 0.12s ease 0s;
+}
+
+/* ── Art lightbox / detail overlay ── */
+.art-lb {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  background: #0a0a0a;
+}
+
+.art-lb-inner {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  height: 100vh;
+}
+
+/* Top bar */
+.art-lb-top {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  padding: 0 32px;
+  height: 56px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  font-family: "Space Mono", monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.art-lb-eyebrow {
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.art-lb-counter {
+  justify-self: center;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.art-lb-close {
+  justify-self: end;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font: inherit;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #f2f2f0;
+  padding: 0;
+}
+
+.art-lb-x {
+  font-size: 0.85rem;
+}
+
+.art-lb-close:hover {
+  color: #fff;
+  text-decoration: underline;
+}
+
+/* Body */
+.art-lb-body {
+  display: grid;
+  grid-template-columns: 1fr minmax(320px, 38%);
+  min-height: 0; /* let children scroll instead of overflowing the grid row */
+}
+
+.art-lb-stage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  overflow: hidden;
+}
+
+.art-lb-stage img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain; /* whole image, never cropped */
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
+}
+
+.art-lb-panel {
+  border-left: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 40px 32px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.art-lb-label {
+  display: block;
+  font-family: "Space Mono", monospace;
+  font-size: 0.58rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.art-lb-titleblock {
+  margin-bottom: 2rem;
+}
+
+.art-lb-title {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: clamp(1.4rem, 2.2vw, 1.9rem);
+  font-weight: 600;
+  color: #fff;
+  margin: 0.6rem 0 0;
+  line-height: 1.1;
+}
+
+.art-lb-meta {
+  margin: 0;
+}
+
+.art-lb-metarow {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.9rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.art-lb-metarow dt {
+  margin: 0;
+}
+
+.art-lb-value {
+  margin: 0;
+  font-family: "Space Mono", monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.02em;
+  color: #f2f2f0;
+  text-align: right;
+}
+
+.art-lb-descblock {
+  margin-top: 2rem;
+}
+
+.art-lb-desc {
+  margin: 0.75rem 0 0;
+  font-size: 0.9rem;
+  line-height: 1.7;
+  color: #c3c8d7;
+}
+
+/* Filmstrip */
+.art-lb-strip {
+  display: flex;
+  gap: 8px;
+  margin-top: auto;
+  padding-top: 2rem;
+  overflow-x: auto;
+  scrollbar-width: thin;
+}
+
+.art-lb-thumb {
+  flex: 0 0 auto;
+  width: 68px;
+  height: 68px;
+  padding: 0;
+  border: 1px solid transparent;
+  background: #141414;
+  cursor: pointer;
+  overflow: hidden;
+  opacity: 0.55;
+  transition: opacity 0.2s ease, border-color 0.2s ease;
+}
+
+.art-lb-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.art-lb-thumb:hover {
+  opacity: 0.85;
+}
+
+.art-lb-thumb.is-active {
+  opacity: 1;
+  border-color: #f2f2f0;
+}
+
+/* Bottom bar */
+.art-lb-bottom {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  padding: 0 32px;
+  min-height: 56px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.art-lb-nav {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 14px 0;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 0.9rem;
+  color: #f2f2f0;
+  min-width: 0;
+}
+
+.art-lb-nav-next {
+  justify-self: end;
+  text-align: right;
+}
+
+.art-lb-arrow {
+  font-family: "Space Mono", monospace;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.art-lb-navtitle {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.art-lb-nav:hover .art-lb-navtitle {
+  text-decoration: underline;
+}
+
+.art-lb-nav:hover .art-lb-arrow {
+  color: #fff;
+}
+
+.art-lb-currentmeta {
+  justify-self: center;
+  font-family: "Space Mono", monospace;
+  font-size: 0.62rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+@media (max-width: 767.98px) {
+  .art-lb-body {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr auto;
+    overflow-y: auto;
+  }
+
+  .art-lb-panel {
+    border-left: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .art-lb-navtitle {
+    max-width: 30vw;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .projects-intro {
+    grid-template-columns: 1fr;
+  }
+
+  .projects-intro-left {
+    border-right: none;
+    border-bottom: 1px solid #C4C4C2;
+  }
+
+  .project-row {
+    grid-template-columns: 1fr;
+  }
+
+  .project-meta {
+    flex-direction: row;
+    gap: 0.75rem;
+    padding: 1.25rem 32px;
+    border-right: none;
+    border-bottom: 1px solid #C4C4C2;
+  }
+
+  .project-image {
+    border-right: none;
+    border-bottom: 1px solid #C4C4C2;
+  }
+}
+
+/* ── Chat page ── */
+.chat-page {
+  position: relative;
+  background: #0A0A0A;
+  color: #F2F2F0;
+}
+
+/* Solid dark backdrop for the chat route so the body's blue gradient never
+   shows through (e.g. the strip below the footer, or behind the conversation).
+   z-index:0 (not -1) so it paints over the body's own background, then the chat
+   content (hero z-0 via source order, log z-2, etc.) paints on top of it. */
+.chat-page::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: #0A0A0A;
+  z-index: 0;
+}
+
+/* Fade the conversation into the background at the top and bottom edges of the
+   scroll area. Top-level elements (in .chat-page, which isn't a stacking
+   context) with a high z-index, so they sit in front of everything. */
+.chat-fade {
+  position: fixed;
+  left: 0;
+  right: 0;
+  height: 48px;
+  z-index: 10; /* above the conversation (z-2), behind the input bar (z-20) and header (z-1000) */
+  pointer-events: none;
+}
+.chat-fade-top {
+  top: 52px; /* moved up 10px */
+  background: linear-gradient(to bottom, #0A0A0A, transparent);
+}
+.chat-fade-bottom {
+  bottom: 165px; /* moved down 25px */
+  background: linear-gradient(to top, #0A0A0A, transparent);
+}
+
+.chat-hero {
+  /* Clearance for the fixed input bar (bottom: 46px + ~104px tall). */
+  --chat-input-bar: 150px;
+  position: fixed;
+  top: 52px; /* below the header */
+  left: 0;
+  right: 0;
+  bottom: var(--chat-input-bar); /* stop at the top of the input bar */
+  z-index: 0;
+  overflow: hidden;
+  background: #0A0A0A;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 100px 32px 0; /* push the head/title down 100px from the header */
+}
+
+.chat-hero-wave {
+  position: absolute;
+  left: 50%;
+  width: 400px;
+  height: auto;
+  /* top and transform (incl. the diamond-lattice dx offset) are set per-spiral. */
+  opacity: 0.55;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.chat-hero-inner {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  text-align: center;
+}
+
+.chat-hero-label {
+  font-family: "Space Mono", monospace;
+  font-size: 0.62rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.chat-hero-title {
+  position: relative;
+  z-index: 3; /* to the front */
+  top: 15px; /* nudged down */
+  font-family: "Space Grotesk", sans-serif;
+  font-size: clamp(2.75rem, 6vw, 4rem);
+  font-weight: 700;
+  color: #fff;
+  margin: 0;
+  line-height: 1;
+}
+
+/* Half-size variant shown as "JonasGPT" once the conversation starts. */
+.chat-hero-title-sm {
+  font-size: clamp(1.375rem, 3vw, 2rem);
+}
+
+.chat-body {
+  position: relative;
+  z-index: 2;
+}
+
+.chat-sidebar {
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 1.5rem 0;
+}
+
+.chat-sidebar-label {
+  font-family: "Space Mono", monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.4);
+  padding: 0 24px;
+  margin-bottom: 1rem;
+}
+
+.chat-user {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 24px;
+}
+
+.chat-user-active {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.chat-user-name {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 0.9rem;
+  color: #F2F2F0;
+}
+
+.chat-avatar {
+  position: relative;
+  flex-shrink: 0;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: #1e1e1e;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Space Mono", monospace;
+  font-size: 0.58rem;
+  letter-spacing: 0.04em;
+  color: #F2F2F0;
+}
+
+.chat-dot {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #28c76f;
+  border: 2px solid #0A0A0A;
+}
+
+.chat-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  /* Transparent so the absolute hero shows behind the exchanges. */
+  background: transparent;
+}
+
+.chat-log {
+  position: fixed;
+  /* Fill the space between the header and the input bar; height auto-flexes
+     with the viewport, and scrolls when messages overflow. */
+  top: 52px;
+  bottom: 150px;
+  left: 0;
+  right: 0;
+  z-index: 2;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  padding: 2rem 32px;
+}
+
+/* Anchor messages to the bottom of the log; collapses to 0 once it overflows,
+   so scrolling still works normally. */
+.chat-log > .chat-msg:first-child {
+  margin-top: auto;
+}
+
+.chat-msg {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  max-width: 72%;
+}
+
+.chat-msg-own {
+  flex-direction: row-reverse;
+  margin-left: auto;
+}
+
+.chat-msg-body {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.chat-msg-own .chat-msg-body {
+  align-items: flex-end;
+}
+
+.chat-msg-meta {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.chat-msg-own .chat-msg-meta {
+  flex-direction: row-reverse;
+}
+
+.chat-msg-author {
+  font-family: "Space Mono", monospace;
+  font-size: 0.62rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #F2F2F0;
+}
+
+.chat-msg-time {
+  font-family: "Space Mono", monospace;
+  font-size: 0.55rem;
+  letter-spacing: 0.06em;
+  color: rgba(255, 255, 255, 0.35);
+}
+
+.chat-bubble {
+  /* Responsive: caps at 440px but shrinks with the viewport so left/right
+     bubbles stay on their side and don't cover the centered talking head. */
+  max-width: min(440px, 31vw);
+  padding: 12px 16px;
+  border-radius: 12px;
+  border-top-left-radius: 2px;
+  background: #1c1c1c;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  color: #e9e9e6;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 0.92rem;
+  line-height: 1.45;
+}
+
+.chat-msg-own .chat-bubble {
+  border-top-left-radius: 12px;
+  border-top-right-radius: 2px;
+  background: #F2F2F0;
+  border-color: transparent;
+  color: #0A0A0A;
+}
+
+/* --- Markdown rendering inside bubbles --- */
+.chat-bubble.markdown > :first-child {
+  margin-top: 0;
+}
+.chat-bubble.markdown > :last-child {
+  margin-bottom: 0;
+}
+.chat-bubble.markdown p {
+  margin: 0 0 0.6em;
+}
+.chat-bubble.markdown ul,
+.chat-bubble.markdown ol {
+  margin: 0.4em 0;
+  padding-left: 1.25em;
+}
+.chat-bubble.markdown li {
+  margin: 0.2em 0;
+}
+.chat-bubble.markdown a {
+  color: #8ab4ff;
+  text-decoration: underline;
+}
+.chat-bubble.markdown code {
+  font-family: "Space Mono", monospace;
+  font-size: 0.85em;
+  background: rgba(255, 255, 255, 0.08);
+  padding: 0.1em 0.35em;
+  border-radius: 4px;
+}
+.chat-bubble.markdown pre {
+  background: #0f0f0f;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  padding: 10px 12px;
+  overflow-x: auto;
+  margin: 0.5em 0;
+}
+.chat-bubble.markdown pre code {
+  background: none;
+  padding: 0;
+}
+.chat-bubble.markdown blockquote {
+  margin: 0.5em 0;
+  padding-left: 0.8em;
+  border-left: 3px solid rgba(255, 255, 255, 0.18);
+  opacity: 0.85;
+}
+.chat-msg-own .chat-bubble.markdown a {
+  color: #1a4fd6;
+}
+.chat-msg-own .chat-bubble.markdown code {
+  background: rgba(0, 0, 0, 0.08);
+}
+
+/* Blinking caret while the reply is still being typed out. */
+.chat-bubble.is-streaming::after {
+  content: "▋";
+  display: inline-block;
+  margin-left: 1px;
+  color: #8a8a8a;
+  animation: chat-caret 1s steps(1) infinite;
+}
+@keyframes chat-caret {
+  50% { opacity: 0; }
+}
+
+/* "Jonas is thinking…" loading bubble with animated dots. */
+.chat-bubble.chat-typing {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #b9b9b4;
+  font-style: italic;
+}
+.chat-dots {
+  display: inline-flex;
+  gap: 3px;
+}
+.chat-dots i {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: currentColor;
+  opacity: 0.4;
+  animation: chat-dot 1.2s infinite ease-in-out;
+}
+.chat-dots i:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.chat-dots i:nth-child(3) {
+  animation-delay: 0.4s;
+}
+@keyframes chat-dot {
+  0%, 60%, 100% { opacity: 0.25; transform: translateY(0); }
+  30% { opacity: 1; transform: translateY(-3px); }
+}
+
+.chat-input {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 46px;
+  z-index: 20;
+  background: #0A0A0A;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 1rem 32px 1.25rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Pin the footer near the screen bottom on the chat route only. */
+app-chat + footer {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 12px;
+  z-index: 20;
+}
+
+.chat-input-field {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #161616;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 10px;
+  padding: 4px 4px 4px 16px;
+}
+
+.chat-input-field input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #F2F2F0;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 0.9rem;
+  padding: 10px 0;
+}
+
+.chat-input-field input::placeholder {
+  color: rgba(255, 255, 255, 0.35);
+}
+
+.chat-send {
+  flex-shrink: 0;
+  width: 38px;
+  height: 38px;
+  border-radius: 8px;
+  border: none;
+  background: #F2F2F0;
+  color: #0A0A0A;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.chat-send svg {
+  width: 16px;
+  height: 16px;
+}
+
+.chat-send:hover {
+  background: #fff;
+}
+
+/* Footer row of the input: chat-room label (left) and the hint (right),
+   spread across the full width. */
+.chat-input-meta {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.chat-input-hint {
+  font-family: "Space Mono", monospace;
+  font-size: 0.55rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.3);
+}
+
+@media (max-width: 767.98px) {
+  .chat-body {
+    grid-template-columns: 1fr;
+  }
+
+  .chat-sidebar {
+    border-right: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .chat-msg {
+    max-width: 88%;
+  }
+}
+
+/* Sandbox "Test Audio" button (debug only). Fixed top-right and above the
+   chat-log overlay (z-index 2) / input (z-index 20) so it stays clickable. */
+.avatar-test {
+  position: fixed;
+  top: 64px;
+  right: 32px;
+  z-index: 100;
+}
+
+.avatar-test button {
+  font-family: "Space Mono", monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.06em;
+  color: #F2F2F0;
+  background: #1c1c1c;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 8px;
+  padding: 6px 12px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.avatar-test button:hover {
+  background: #2a2a2a;
+}
+
+/* ════════════════════════════════════════════════════════════════════════
+   PROJECT DETAIL (route: /portfolio/:slug)
+   Case-study layout for a single Drive-backed portfolio project.
+   Reuses the site tokens: Space Grotesk headings, Space Mono labels,
+   #0A0A0A / #F2F2F0 surfaces, 1px #C4C4C2 (light) / rgba(255,255,255,.08)
+   (dark) grid dividers, 32px page gutters.
+   ════════════════════════════════════════════════════════════════════════ */
+
+/* ── Breadcrumb ── */
+.pd-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 32px;
+  background: #0A0A0A;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  font-family: "Space Mono", monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.pd-breadcrumb a {
+  color: rgba(255, 255, 255, 0.5);
+  text-decoration: none;
+}
+
+.pd-breadcrumb a:hover {
+  color: #F2F2F0;
+}
+
+.pd-breadcrumb-sep {
+  color: rgba(255, 255, 255, 0.25);
+}
+
+.pd-breadcrumb-current {
+  color: #F2F2F0;
+}
+
+/* ── Hero: intro + meta panel ── */
+.pd-hero {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr;
+  background: #0A0A0A;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.pd-hero-main {
+  padding: 3.5rem 2.5rem 3.5rem 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.pd-hero-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 1.75rem;
+}
+
+.pd-eyebrow-label {
+  font-family: "Space Mono", monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.pd-title {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: clamp(2.25rem, 4vw, 3.35rem);
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.04;
+  letter-spacing: -0.01em;
+  margin: 0 0 1.75rem;
+}
+
+.pd-description {
+  font-size: 0.95rem;
+  color: #c3c8d7;
+  line-height: 1.75;
+  max-width: 46ch;
+  margin: 0 0 2.25rem;
+}
+
+.pd-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 12px 22px;
+  font-family: "Space Mono", monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #0A0A0A;
+  background: #F2F2F0;
+  border: 1.5px solid #F2F2F0;
+  text-decoration: none;
+  transition: color 0.2s ease, background-color 0.2s ease;
+}
+
+.pd-cta svg {
+  width: 15px;
+  height: 15px;
+}
+
+.pd-cta .pd-arrow {
+  font-size: 0.8rem;
+}
+
+.pd-cta:hover {
+  background: transparent;
+  color: #F2F2F0;
+}
+
+/* Meta panel (right column) */
+.pd-panel {
+  border-left: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  flex-direction: column;
+}
+
+.pd-panel-block {
+  padding: 1.5rem 32px 1.5rem 2rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.pd-panel-block:last-child {
+  border-bottom: none;
+}
+
+.pd-panel-label {
+  display: block;
+  font-family: "Space Mono", monospace;
+  font-size: 0.58rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.4);
+  margin-bottom: 1rem;
+}
+
+.pd-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.pd-chip {
+  font-family: "Space Mono", monospace;
+  font-size: 0.58rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #d7dae3;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  padding: 5px 11px;
+}
+
+.pd-kv {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  font-family: "Space Mono", monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.06em;
+  color: rgba(255, 255, 255, 0.5);
+  padding: 3px 0;
+}
+
+.pd-kv-val {
+  color: #F2F2F0;
+}
+
+.pd-duration {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-family: "Space Mono", monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  color: #F2F2F0;
+}
+
+.pd-duration svg {
+  width: 15px;
+  height: 15px;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.pd-panel-value {
+  font-size: 0.85rem;
+  color: #d7dae3;
+}
+
+/* ── Sections (contributions / key features / gallery) ── */
+.pd-section-light {
+  background: #F2F2F0;
+}
+
+.pd-section-dark {
+  background: #0A0A0A;
+}
+
+.pd-section-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 32px;
+}
+
+.pd-section-bar-light {
+  border-bottom: 1px solid #C4C4C2;
+}
+
+.pd-section-bar-dark {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.pd-section-label {
+  font-family: "Space Mono", monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.pd-section-label-light {
+  color: #0A0A0A;
+}
+
+.pd-section-label-dark {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.pd-section-ext {
+  color: rgba(255, 255, 255, 0.5);
+  text-decoration: none;
+  font-size: 0.8rem;
+}
+
+.pd-section-ext:hover {
+  color: #F2F2F0;
+}
+
+/* Grid of cells with 1px dividers (via gap over a colored background). */
+.pd-grid {
+  display: grid;
+  gap: 1px;
+}
+
+.pd-grid-2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.pd-grid-3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.pd-grid-light {
+  background: #C4C4C2;
+}
+
+.pd-grid-light .pd-cell {
+  background: #F2F2F0;
+}
+
+.pd-grid-dark {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.pd-grid-dark .pd-cell {
+  background: #0A0A0A;
+}
+
+.pd-cell {
+  padding: 2.5rem 2rem;
+}
+
+.pd-cell-number {
+  display: block;
+  font-family: "Space Mono", monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.14em;
+  color: #9a9a97;
+  margin-bottom: 1.25rem;
+}
+
+.pd-cell-title {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 1.15rem;
+  font-weight: 600;
+  margin: 0 0 0.85rem;
+}
+
+.pd-cell-title-dark {
+  color: #0A0A0A;
+}
+
+.pd-cell-title-light {
+  color: #ffffff;
+}
+
+.pd-cell-body {
+  font-size: 0.875rem;
+  line-height: 1.7;
+  margin: 0;
+}
+
+.pd-cell-body-light {
+  color: #6b6b6b;
+}
+
+.pd-cell-body-dark {
+  color: #c3c8d7;
+}
+
+/* Section meta footer (client · year / live link) */
+.pd-meta-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 14px 32px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  font-family: "Space Mono", monospace;
+  font-size: 0.58rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.pd-meta-link {
+  color: rgba(255, 255, 255, 0.55);
+  text-decoration: none;
+}
+
+.pd-meta-link:hover {
+  color: #F2F2F0;
+}
+
+/* ── Gallery ── */
+.pd-gallery {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1px;
+  background: #C4C4C2;
+}
+
+.pd-gallery-item {
+  margin: 0;
+  background: #e4e4e1;
+}
+
+.pd-gallery-item img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ── Back bar ── */
+.pd-back-bar {
+  display: flex;
+  align-items: center;
+  padding: 1.1rem 32px;
+  background: #F2F2F0;
+  border-bottom: 1px solid #C4C4C2;
+}
+
+.pd-back-link {
+  font-family: "Space Mono", monospace;
+  font-size: 0.62rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #0A0A0A;
+  text-decoration: none;
+}
+
+.pd-back-link:hover {
+  text-decoration: underline;
+}
+
+/* ── Loading / error / not-found states ── */
+.pd-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.25rem;
+  min-height: 55vh;
+  background: #0A0A0A;
+  padding: 3rem 32px;
+}
+
+.pd-state-label {
+  font-family: "Space Mono", monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.pd-state .pd-back-link {
+  color: #F2F2F0;
+}
+
+/* ── Responsive ── */
+@media (max-width: 991.98px) {
+  .pd-hero {
+    grid-template-columns: 1fr;
+  }
+
+  .pd-panel {
+    border-left: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .pd-grid-3 {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .pd-grid-2,
+  .pd-grid-3,
+  .pd-gallery {
+    grid-template-columns: 1fr;
+  }
+
+  .pd-hero-main {
+    padding: 2.5rem 32px;
+  }
+}

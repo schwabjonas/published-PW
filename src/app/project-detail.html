@@ -1,0 +1,151 @@
+@let p = project();
+
+@if (loading()) {
+  <section class="pd-state">
+    <span class="pd-state-label">Loading project…</span>
+  </section>
+} @else if (notFound()) {
+  <section class="pd-state">
+    <span class="pd-state-label">Project not found.</span>
+    <a class="pd-back-link" routerLink="/portfolio">← Back to Portfolio</a>
+  </section>
+} @else if (failed()) {
+  <section class="pd-state">
+    <span class="pd-state-label">Couldn’t load this project. Please try again.</span>
+    <a class="pd-back-link" routerLink="/portfolio">← Back to Portfolio</a>
+  </section>
+} @else if (p) {
+  <!-- Breadcrumb -->
+  <nav class="pd-breadcrumb">
+    <a routerLink="/portfolio">Portfolio</a>
+    <span class="pd-breadcrumb-sep">/</span>
+    <span class="pd-breadcrumb-current">{{ p.name }}</span>
+  </nav>
+
+  <!-- Hero: intro (left) + meta panel (right) -->
+  <section class="pd-hero">
+    <div class="pd-hero-main">
+      <div class="pd-hero-eyebrow">
+        <span class="pd-eyebrow-label">Project</span>
+        <span class="project-status" [class]="'project-status-' + p.status">{{ p.status_label }}</span>
+      </div>
+      <h1 class="pd-title">{{ p.name }}</h1>
+      <p class="pd-description">{{ p.description }}</p>
+      @if (p.link) {
+        <a class="pd-cta" [href]="p.link" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+            <circle cx="12" cy="12" r="9" /><path d="M3 12h18" /><path d="M12 3a15 15 0 0 1 0 18a15 15 0 0 1 0-18" />
+          </svg>
+          <span>View live site</span>
+          <span class="pd-arrow">↗</span>
+        </a>
+      }
+    </div>
+
+    <aside class="pd-panel">
+      <div class="pd-panel-block">
+        <span class="pd-panel-label">Stack</span>
+        <div class="pd-chips">
+          @for (tech of p.stack; track tech) {
+            <span class="pd-chip">{{ tech }}</span>
+          }
+        </div>
+      </div>
+
+      <div class="pd-panel-block">
+        <span class="pd-panel-label">Timeline</span>
+        <div class="pd-kv"><span>Start</span><span class="pd-kv-val">{{ p.timeline.start_date }}</span></div>
+        <div class="pd-kv"><span>End</span><span class="pd-kv-val">{{ p.timeline.end_date }}</span></div>
+      </div>
+
+      @if (p.duration) {
+        <div class="pd-panel-block">
+          <span class="pd-panel-label">Duration</span>
+          <div class="pd-duration">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+              <circle cx="12" cy="12" r="9" /><path d="M12 7v5l3 2" />
+            </svg>
+            <span>{{ p.duration }}</span>
+          </div>
+        </div>
+      }
+
+      @if (p.client) {
+        <div class="pd-panel-block">
+          <span class="pd-panel-label">Client / Platform</span>
+          <span class="pd-panel-value">{{ p.client }}</span>
+        </div>
+      }
+    </aside>
+  </section>
+
+  <!-- Contributions -->
+  @if (p.contributions.length) {
+    <section class="pd-section pd-section-light">
+      <div class="pd-section-bar pd-section-bar-light">
+        <span class="pd-section-label pd-section-label-light">Contributions</span>
+      </div>
+      <div class="pd-grid pd-grid-2 pd-grid-light">
+        @for (c of p.contributions; track c.title; let i = $index) {
+          <article class="pd-cell">
+            <span class="pd-cell-number">{{ (i + 1).toString().padStart(2, '0') }}</span>
+            <h3 class="pd-cell-title pd-cell-title-dark">{{ c.title }}</h3>
+            <p class="pd-cell-body pd-cell-body-light">{{ c.body }}</p>
+          </article>
+        }
+      </div>
+    </section>
+  }
+
+  <!-- Key features -->
+  @if (p.key_features.length) {
+    <section class="pd-section pd-section-dark">
+      <div class="pd-section-bar pd-section-bar-dark">
+        <span class="pd-section-label pd-section-label-dark">Key Features</span>
+        @if (p.link) {
+          <a class="pd-section-ext" [href]="p.link" target="_blank" rel="noopener noreferrer" aria-label="Open live site">↗</a>
+        }
+      </div>
+      <div class="pd-grid pd-grid-3 pd-grid-dark">
+        @for (f of p.key_features; track f.title; let i = $index) {
+          <article class="pd-cell">
+            <span class="pd-cell-number">{{ (i + 1).toString().padStart(2, '0') }}</span>
+            <h3 class="pd-cell-title pd-cell-title-light">{{ f.title }}</h3>
+            <p class="pd-cell-body pd-cell-body-dark">{{ f.body }}</p>
+          </article>
+        }
+      </div>
+      <div class="pd-meta-bar">
+        <span class="pd-meta-left">
+          @if (p.client) { {{ p.client }} · }{{ year() }}
+        </span>
+        @if (p.link) {
+          <a class="pd-meta-link" [href]="p.link" target="_blank" rel="noopener noreferrer">
+            {{ host() }} <span class="pd-arrow">↗</span>
+          </a>
+        }
+      </div>
+    </section>
+  }
+
+  <!-- Gallery (renders once images are added to the Drive folder) -->
+  @if (p.images.length) {
+    <section class="pd-section pd-section-light">
+      <div class="pd-section-bar pd-section-bar-light">
+        <span class="pd-section-label pd-section-label-light">Gallery</span>
+      </div>
+      <div class="pd-gallery">
+        @for (img of p.images; track img.url) {
+          <figure class="pd-gallery-item">
+            <img [src]="img.url" [alt]="img.name" loading="lazy" />
+          </figure>
+        }
+      </div>
+    </section>
+  }
+
+  <!-- Back bar -->
+  <div class="pd-back-bar">
+    <a class="pd-back-link" routerLink="/portfolio">← Back to Portfolio</a>
+  </div>
+}
