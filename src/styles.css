@@ -3045,3 +3045,35 @@ app-chat + footer {
   .header-center .nav .nav-link { font-size: 0.55rem; padding: 0 3px; }
   .hero h1 { font-size: 1.8rem; }
 }
+
+/* ===========================================================================
+   STICKY FOOTER
+   ===========================================================================
+   .site-shell is a 100vh flex column, but none of its children grew, so on a
+   short page (the Portfolio list with only a couple of projects) the footer
+   floated up right under the content and the body's dark gradient showed
+   through beneath it.
+
+   The routed page is the element immediately following <router-outlet> —
+   Angular inserts it as a sibling, not a child. Making that element grow
+   pushes the footer flush to the bottom of the viewport.
+   =========================================================================== */
+.site-shell > router-outlet + * {
+  display: block;
+  flex: 1 0 auto;
+}
+
+/* Whatever space the grown page leaves below its content takes the page's own
+   colour rather than the body gradient. Portfolio uses #e7e6e3 — the same tone
+   as .projects-category-bar — so the band under the last project reads as part
+   of the page's own palette, separated from the final row by its existing 1px
+   #C4C4C2 border. */
+.site-shell > app-portfolio {
+  background: #e7e6e3;
+}
+
+.site-shell > app-home,
+.site-shell > app-art,
+.site-shell > app-project-detail {
+  background: #0A0A0A;
+}
