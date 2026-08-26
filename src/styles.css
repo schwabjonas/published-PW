@@ -3077,3 +3077,20 @@ app-chat + footer {
 .site-shell > app-project-detail {
   background: #0A0A0A;
 }
+
+/* The home page ends with the "feet" graphic, which hangs out of a zero-height
+   divider anchored to the end of the content. Once the page grew to fill the
+   viewport, the extra space opened up *below* that anchor and left the feet
+   stranded mid-page instead of resting on the footer.
+   Making the page a flex column and pushing the final divider down with
+   margin-top:auto keeps the feet against the footer at any viewport height,
+   while the filler space moves above them where it belongs. The children are
+   full-width block sections, so column flex stacks them exactly as before. */
+.site-shell > app-home {
+  display: flex;
+  flex-direction: column;
+}
+
+.site-shell > app-home > .group39-divider {
+  margin-top: auto;
+}
