@@ -627,10 +627,10 @@ a.btn {
 
 .group39-img {
   position: absolute;
-  width: 200px;
+  width: var(--feet-w);
   height: auto;
-  top: -10px;
-  left: 57px;
+  top: var(--feet-top);
+  left: var(--feet-left);
   pointer-events: none;
   user-select: none;
 }
@@ -644,10 +644,10 @@ a.btn {
 
 .group40-img {
   position: absolute;
-  width: 250px;
+  width: var(--hands-w);
   height: auto;
-  top: -30px;
-  left: 32px;
+  top: var(--hands-top);
+  left: var(--hands-left);
   pointer-events: none;
   user-select: none;
 }
@@ -2824,12 +2824,25 @@ app-chat + footer {
   --head-oval-w: 300px;
   --head-oval-h: 600px;
 
+  /* Decorative limbs that hang out of zero-height dividers: Group 40 ("hands")
+     between the hero and the ticker, Group 39 ("feet") above the footer. */
+  --hands-w: 250px;
+  --hands-top: -30px;
+  --hands-left: 32px;
+  --feet-w: 200px;
+  --feet-top: -10px;
+  --feet-left: 57px;
+
   --hero-pad: 32px;
+  /* Split out so the gap between the head and the ticker can be tightened
+     independently of the hero's other sides. */
+  --hero-pad-bottom: 32px;
   --hero-gap: 2rem;
 }
 
 .hero {
   padding: var(--hero-pad) !important;
+  padding-bottom: var(--hero-pad-bottom) !important;
 }
 
 /* ── Large screens ─────────────────────────────────────────────────────────
@@ -2845,7 +2858,15 @@ app-chat + footer {
     --head-oval-w: 400px;
     --head-oval-h: 800px;
 
+    --hands-w: 330px;
+    --hands-top: -40px;
+    --hands-left: 56px;
+    --feet-w: 265px;
+    --feet-top: -13px;
+    --feet-left: 76px;
+
     --hero-pad: 56px;
+    --hero-pad-bottom: 56px;
     --hero-gap: 3.5rem;
   }
 
@@ -2869,7 +2890,15 @@ app-chat + footer {
     --head-oval-w: 260px;
     --head-oval-h: 520px;
 
+    --hands-w: 205px;
+    --hands-top: -24px;
+    --hands-left: 26px;
+    --feet-w: 165px;
+    --feet-top: -8px;
+    --feet-left: 46px;
+
     --hero-pad: 26px;
+    --hero-pad-bottom: 20px;
     --hero-gap: 1.5rem;
   }
 
@@ -2917,8 +2946,39 @@ app-chat + footer {
     --head-oval-w: 220px;
     --head-oval-h: 440px;
 
+    /* 250px of hands on a 375px screen filled two-thirds of the width. These
+       are sized as a share of the viewport so they stay proportionate from a
+       320px SE up to a 767px tablet-portrait, and capped so they never grow
+       past the widths that read well. */
+    --hands-w: min(46vw, 190px);
+    --hands-top: -16px;
+    --feet-w: min(38vw, 155px);
+    --feet-top: -8px;
+
     --hero-pad: 20px;
+    /* Was 20px: the head sat too far above the ticker once stacked. The head
+       art deliberately overhangs its box by ~9px, so this stays small. */
+    --hero-pad-bottom: 4px;
     --hero-gap: 1.25rem;
+  }
+
+  /* Centered rather than pinned to a fixed left offset, which put both graphics
+     off to one side on a narrow screen. */
+  .group40-img,
+  .group39-img {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  /* The feet hang below their zero-height divider and were landing on top of
+     the footer text. Group 39 is 900x251, so at --feet-w it renders about 28%
+     of that width in height; this clears the overhang plus breathing room.
+     footer .container sets 11.5px with !important, hence the same here. */
+  footer .container {
+    padding-top: calc(min(38vw, 155px) * 0.28 + 16px) !important;
+    padding-bottom: 16px !important;
+    flex-direction: column !important;
+    gap: 10px;
   }
 
   /* Header becomes two rows: brand + Hire me, then the tabs. */
