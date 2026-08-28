@@ -47,19 +47,19 @@
     ],
     "images": [
       {
-        "url": "/content/assets/1diDy6Qk4EeapmKensHmXP-CMRPY-4vTK",
+        "url": "/content/assets/1k8FzeR2uN1l2PdamFjFCwOTHAqzzODL9",
         "name": "course-page-figma",
         "width": 1909,
         "height": 1856
       },
       {
-        "url": "/content/assets/1WvkYbTtYC3fM7NuyXpSUUpQGLceClxuO",
+        "url": "/content/assets/1oAvJVepeqTctCaYPkJVh7qTaUQwmAj_n",
         "name": "course-page-instructions",
         "width": 1905,
         "height": 1686
       }
     ],
-    "image_url": "/content/assets/1diDy6Qk4EeapmKensHmXP-CMRPY-4vTK",
+    "image_url": "/content/assets/1k8FzeR2uN1l2PdamFjFCwOTHAqzzODL9",
     "client": "Siemens Digital Industry Software",
     "notes": ""
   },
@@ -126,8 +126,45 @@
         "body": "Each round of changes traced back to a specific observed failure, not a preference."
       }
     ],
-    "images": [],
-    "image_url": null,
+    "images": [
+      {
+        "url": "/content/assets/1w2FfdyD14M5QKXrJ0rQRKALPOPRCcDde",
+        "name": "Badging-App-Layout.png",
+        "width": 5356,
+        "height": 2586
+      },
+      {
+        "url": "/content/assets/1XSPsDRSkaGZUTUReGgnEX-RWSj7h_Lj2",
+        "name": "Badging-App-Navigation.png",
+        "width": 3540,
+        "height": 1294
+      },
+      {
+        "url": "/content/assets/1iFBa5V8--jeBuU3A1kazmmBKj5qhGvtr",
+        "name": "Badging-App-Notation.png",
+        "width": 2637,
+        "height": 27123
+      },
+      {
+        "url": "/content/assets/1KeyIYEugZghhbA25Z1tk3YvJuHqfrJG6",
+        "name": "Badging-App-User-Paths.png",
+        "width": 3909,
+        "height": 1314
+      },
+      {
+        "url": "/content/assets/1mezuK4iRDtFXl11NS6wl5pZ7Ls6UnwJ9",
+        "name": "Bading-App-Components.png",
+        "width": 4500,
+        "height": 5074
+      },
+      {
+        "url": "/content/assets/10QvaBkN-SbMkAkIrRMNY_uPVS_K0Kr91",
+        "name": "Initial Research Findings.png",
+        "width": 2840,
+        "height": 1421
+      }
+    ],
+    "image_url": "/content/assets/1w2FfdyD14M5QKXrJ0rQRKALPOPRCcDde",
     "client": "Enterprise engineering software company",
     "notes": ""
   },
@@ -150,7 +187,7 @@
       "C#",
       "Netcode for GameObjects"
     ],
-    "link": "",
+    "link": "https://jenma05.itch.io/city-drift?secret=awex89VtC6OQCY09c6sRjW5Zug",
     "description": "A networked multiplayer racer where players build the track before they race it. I built the track editor: anchor-based snapping, overlap detection, and a 60-second build timer.",
     "contributions": [
       {
@@ -172,8 +209,45 @@
         "body": "A 60-second limit keeps the pre-race phase moving."
       }
     ],
-    "images": [],
-    "image_url": null,
+    "images": [
+      {
+        "url": "/content/assets/16bGosJOxRsddLLA0RYSyWzpPOXC7bFJv",
+        "name": "Screenshot 2026-08-28 at 4.06.05 PM.png",
+        "width": 2042,
+        "height": 1148
+      },
+      {
+        "url": "/content/assets/1Y8jEsdSz0dMIo1QxYuLtEDb2UE8-Pbge",
+        "name": "Screenshot 2026-08-28 at 4.06.33 PM.png",
+        "width": 2042,
+        "height": 1146
+      },
+      {
+        "url": "/content/assets/1alfnVWH1hmF696g_icy8pb6KVAQC-zva",
+        "name": "Screenshot 2026-08-28 at 4.06.51 PM.png",
+        "width": 2036,
+        "height": 1138
+      },
+      {
+        "url": "/content/assets/18w4PrNyhbsTCtOFofGTPJfQAK77_otlB",
+        "name": "Screenshot 2026-08-28 at 4.07.12 PM.png",
+        "width": 2044,
+        "height": 1146
+      },
+      {
+        "url": "/content/assets/1emTqefvWV8sgOiGCurxF5fb65USv2Pb-",
+        "name": "Screenshot 2026-08-28 at 4.07.26 PM.png",
+        "width": 2040,
+        "height": 1144
+      },
+      {
+        "url": "/content/assets/1kjOPS__YK_pEBloY7UxoEBxEkKTgYSKx",
+        "name": "Screenshot 2026-08-28 at 4.07.45 PM.png",
+        "width": 2040,
+        "height": 1142
+      }
+    ],
+    "image_url": "/content/assets/16bGosJOxRsddLLA0RYSyWzpPOXC7bFJv",
     "client": "Video Game Design 2, team of 4",
     "notes": ""
   }
