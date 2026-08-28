@@ -32,7 +32,11 @@ const TimelineSchema = z.object({
 export const ProjectSchema = z.object({
   slug: z.string(),
   name: z.string(),
+  // Top-level Portfolio tab; `category` is the sub-group inside it. Both are
+  // defaulted so content baked before sections existed still parses.
+  section: z.string().default('Professional'),
   category: z.string(),
+  featured: z.boolean().default(false),
   status: z.string(),
   status_label: z.string(),
   date_created: z.string(),

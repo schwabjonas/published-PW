@@ -1,15 +1,15 @@
 <section class="projects">
   <div class="projects-header-bar">
-    <span class="projects-label">Portfolio — My Work</span>
+    <span class="projects-label">Portfolio · Selected Work</span>
   </div>
 
-  <!-- Moved from the home page's "Portfolio — My Work" section -->
+  <!-- Intro block, moved here from the home page -->
   <div class="projects-intro">
     <div class="projects-intro-left">
-      <h1 class="projects-headline">Passionate about building unique, accessible digital experiences.</h1>
+      <h1 class="projects-headline">I build across the stack, and I write the AI tooling that works on it.</h1>
     </div>
     <div class="projects-intro-right">
-      <p class="projects-about">Whether it's creating elegant interfaces, developing robust backends, or just experimenting with fun projects — I enjoy every aspect of the process.</p>
+      <p class="projects-about">These projects run from the database to the interface. Lately that has meant building models into the stack rather than bolting them on: an agent skill set that works on a production Angular codebase at Copado, a generator that wrote descriptions for 300 credentialing programs at Siemens, and the chat and voice services behind this site. Each case study covers what I built and why.</p>
       <div class="services-cta-row">
         <a class="btn-svc" href="https://github.com/schwabjonas" target="_blank" rel="noopener noreferrer">
           <img src="/assets/icons/github-Icon.svg" alt="" />Github
@@ -20,6 +20,70 @@
       </div>
     </div>
   </div>
+
+  <div class="projects-tab-bar">
+    <div class="projects-tab-options">
+      <button
+        type="button"
+        class="projects-tab"
+        [class.is-active]="activeSection() === null"
+        (click)="setSection(null)"
+      >All</button>
+      @for (section of sections(); track section) {
+        <button
+          type="button"
+          class="projects-tab"
+          [class.is-active]="activeSection() === section"
+          (click)="setSection(section)"
+        >{{ section }}</button>
+      }
+    </div>
+    <span class="projects-tab-count">{{ visibleCount() }} {{ visibleCount() === 1 ? 'project' : 'projects' }}</span>
+  </div>
+
+  @if (sectionDescription(); as sectionDesc) {
+    <div class="projects-category-intro">
+      <p class="projects-category-desc">{{ sectionDesc }}</p>
+    </div>
+  }
+
+  @if (highlights().length) {
+    <div class="projects-category-bar projects-highlight-bar">
+      <span class="projects-category-label">Highlighted</span>
+      <span class="projects-category-count">{{ highlights().length }} {{ highlights().length === 1 ? 'project' : 'projects' }}</span>
+    </div>
+
+    @for (project of highlights(); track project.slug; let i = $index) {
+      <a class="project-row project-row-featured" [routerLink]="['/portfolio', project.slug]">
+        <div class="project-meta">
+          <span class="project-number">{{ number(i) }}</span>
+          <span class="project-year">{{ year(project) }}</span>
+        </div>
+
+        @if (project.image_url) {
+          <div class="project-image" [style.background-image]="'url(' + project.image_url + ')'"></div>
+        } @else {
+          <div class="project-image project-image-empty"></div>
+        }
+
+        <div class="project-content">
+          <div class="project-title-row">
+            <h2 class="project-title">{{ project.name }}</h2>
+            <span class="project-status" [class]="'project-status-' + project.status">{{ project.status_label }}</span>
+          </div>
+          <p class="project-desc">{{ project.description }}</p>
+          <div class="project-tags">
+            @for (tech of project.stack; track tech) {
+              <span>{{ tech }}</span>
+            }
+          </div>
+          <div class="project-links">
+            <span class="project-link">View project <span class="link-arrow">→</span></span>
+          </div>
+        </div>
+      </a>
+    }
+  }
 
   @for (group of groups(); track group.category) {
     <div class="projects-category-bar">
@@ -64,9 +128,17 @@
       </a>
     }
   } @empty {
-    @if (loaded()) {
+    <!-- Only truly empty if the highlight block is empty too, otherwise a
+         section whose projects are all highlighted would read as "nothing here". -->
+    @if (loaded() && !highlights().length) {
       <div class="projects-empty">
-        <span class="projects-label">No projects published yet.</span>
+        <span class="projects-label">
+          @if (activeSection(); as section) {
+            Nothing in {{ section }} yet.
+          } @else {
+            No projects published yet.
+          }
+        </span>
       </div>
     }
   }

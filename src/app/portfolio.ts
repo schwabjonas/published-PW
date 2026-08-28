@@ -31,14 +31,60 @@ export class Portfolio {
   };
 
   /**
-   * Projects bucketed by category, preserving first-seen order. Only categories
-   * that actually have projects appear, so with everything defaulting to
-   * "Front End" there's a single Front End section for now.
+   * Optional intro copy shown under a section tab. Keyed by section name. This
+   * is where a tab gets reframed in one line — e.g. stopping "Academia" from
+   * reading as "homework".
+   */
+  private readonly sectionDescriptions: Record<string, string> = {
+    Academia:
+      'Course projects where I built more than the assignment asked for.',
+  };
+
+  // ── Section tabs (top level: Academia / Professional / Personal) ────────
+  /** Active section tab, or null for the "All" default. */
+  protected readonly activeSection = signal<string | null>(null);
+
+  /**
+   * Tabs in a fixed order so they don't reshuffle as content is added, with any
+   * unrecognised section appended after the known three.
+   */
+  private readonly sectionOrder = ['Academia', 'Professional', 'Personal'];
+
+  protected readonly sections = computed<string[]>(() => {
+    const present = new Set(this.items().map((p) => p.section));
+    const known = this.sectionOrder.filter((s) => present.has(s));
+    const rest = [...present].filter((s) => !this.sectionOrder.includes(s));
+    return [...known, ...rest];
+  });
+
+  /** Projects in the active section (all of them when no tab is selected). */
+  private readonly visible = computed<Project[]>(() => {
+    const section = this.activeSection();
+    const items = this.items();
+    return section === null ? items : items.filter((p) => p.section === section);
+  });
+
+  /** Count shown on the right of the tab bar. */
+  protected readonly visibleCount = computed(() => this.visible().length);
+
+  /**
+   * Highlighted projects for the current tab. These render in their own block
+   * above the category lists and are deliberately *excluded* from those lists
+   * below, so a highlighted project never appears twice on the same page.
+   */
+  protected readonly highlights = computed<Project[]>(() =>
+    this.visible().filter((p) => p.featured),
+  );
+
+  /**
+   * Non-highlighted projects bucketed by category, preserving first-seen order.
+   * Only categories that actually have projects appear.
    */
   protected readonly groups = computed<CategoryGroup[]>(() => {
     const groups: CategoryGroup[] = [];
     const byName = new Map<string, CategoryGroup>();
-    for (const project of this.items()) {
+    for (const project of this.visible()) {
+      if (project.featured) continue; // shown in the highlight block instead
       let group = byName.get(project.category);
       if (!group) {
         group = { category: project.category, projects: [] };
@@ -49,6 +95,11 @@ export class Portfolio {
     }
     return groups;
   });
+
+  /** Switch tabs (null = All). */
+  protected setSection(section: string | null): void {
+    this.activeSection.set(section);
+  }
 
   constructor() {
     // Content comes from the Drive-backed CMS (GET /api/v1/projects).
@@ -64,6 +115,12 @@ export class Portfolio {
   /** Intro copy for a category, or null if none is defined. */
   protected description(category: string): string | null {
     return this.categoryDescriptions[category] ?? null;
+  }
+
+  /** Intro copy for the active section, or null if none is defined. */
+  protected sectionDescription(): string | null {
+    const section = this.activeSection();
+    return section === null ? null : (this.sectionDescriptions[section] ?? null);
   }
 
   /** Zero-padded position, e.g. "01". */

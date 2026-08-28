@@ -1202,7 +1202,10 @@ a.portfolio-section-label:hover {
 .project-image {
   min-height: 18rem;
   background-size: cover;
-  background-position: center;
+  /* Anchor to the top edge so a tall screenshot keeps its header/hero and the
+     overflow is cropped off the bottom. Centering hid the part that identifies
+     the project. */
+  background-position: top center;
   background-color: #e4e4e1;
   border-right: 1px solid #C4C4C2;
 }
@@ -1323,6 +1326,92 @@ a.project-row:hover .project-link {
 
 .projects-empty {
   padding: 2.5rem 32px;
+}
+
+/* ── Portfolio section tabs (Academia / Professional / Personal) ──
+   Same interaction as the Art page's medium filter, restyled for the
+   Portfolio page's light palette. */
+.projects-tab-bar {
+  display: flex;
+  align-items: stretch;
+  border-bottom: 1px solid #C4C4C2;
+  font-family: "Space Mono", monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  overflow-x: auto;
+}
+
+.projects-tab-options {
+  display: flex;
+  align-items: stretch;
+}
+
+.projects-tab {
+  font: inherit;
+  letter-spacing: inherit;
+  text-transform: inherit;
+  padding: 14px 32px;
+  white-space: nowrap;
+  background: transparent;
+  color: #8a8a87;
+  border: none;
+  border-right: 1px solid #C4C4C2;
+  cursor: pointer;
+  transition: color 0.2s ease, background-color 0.2s ease;
+}
+
+.projects-tab:hover {
+  color: #0A0A0A;
+}
+
+.projects-tab.is-active {
+  background: #0A0A0A;
+  color: #F2F2F0;
+}
+
+.projects-tab-count {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+  padding: 0 32px;
+  white-space: nowrap;
+  color: #8a8a87;
+  border-left: 1px solid #C4C4C2;
+}
+
+/* Highlight block — the projects worth reading first in a section. */
+.projects-highlight-bar {
+  background: #0A0A0A;
+}
+
+.projects-highlight-bar .projects-category-label {
+  color: #F2F2F0;
+}
+
+.projects-highlight-bar .projects-category-count {
+  color: rgba(242, 242, 240, 0.5);
+}
+
+/* A highlighted row gets a taller image and a marker down its left edge, so it
+   reads as promoted without needing a separate layout. */
+.project-row-featured {
+  background: #ecece9;
+  box-shadow: inset 3px 0 0 #0A0A0A;
+}
+
+.project-row-featured .project-image {
+  min-height: 24rem;
+}
+
+.project-row-featured .project-title {
+  font-size: 1.65rem;
+}
+
+@media (max-width: 900px) {
+  .project-row-featured .project-image {
+    min-height: 18rem;
+  }
 }
 
 /* Category group header on the Portfolio page (e.g. "Front End"). */
