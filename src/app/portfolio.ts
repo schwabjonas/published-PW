@@ -4,9 +4,6 @@ import { RouterLink } from '@angular/router';
 import { Project, ProjectService } from './project.service';
 
 interface CategoryGroup {
-  /** Composite key, so two sections can both have a "Front End" group. */
-  key: string;
-  section: string;
   category: string;
   projects: Project[];
 }
@@ -71,30 +68,25 @@ export class Portfolio {
   protected readonly visibleCount = computed(() => this.visible().length);
 
   /**
-   * Highlighted projects for the current tab. These render in their own block
-   * above the category lists and are deliberately *excluded* from those lists
-   * below, so a highlighted project never appears twice on the same page.
-   */
-  protected readonly highlights = computed<Project[]>(() =>
-    this.visible().filter((p) => p.featured),
-  );
-
-  /**
-   * Non-highlighted projects bucketed by category, preserving first-seen order.
-   * Only categories that actually have projects appear.
+   * Projects bucketed by category, preserving first-seen order. Only categories
+   * that actually have projects appear.
+   *
+   * The two taxonomies are deliberately independent: the tabs above filter by
+   * `section` (who the work was for), these bars group by `category` (the kind
+   * of engineering). So on "All" a category spans every section.
+   *
+   * `featured` is still carried on each project but no longer changes rendering
+   * — the highlight block was removed. Reinstating it means filtering on it
+   * here again.
    */
   protected readonly groups = computed<CategoryGroup[]>(() => {
     const groups: CategoryGroup[] = [];
     const byName = new Map<string, CategoryGroup>();
     for (const project of this.visible()) {
-      if (project.featured) continue; // shown in the highlight block instead
-      // Keyed by section *and* category: on the All tab an Academia "Front End"
-      // project must not fall into the Professional "Front End" group.
-      const key = `${project.section}|${project.category}`;
-      let group = byName.get(key);
+      let group = byName.get(project.category);
       if (!group) {
-        group = { key, section: project.section, category: project.category, projects: [] };
-        byName.set(key, group);
+        group = { category: project.category, projects: [] };
+        byName.set(project.category, group);
         groups.push(group);
       }
       group.projects.push(project);
@@ -127,26 +119,6 @@ export class Portfolio {
   protected sectionDescription(): string | null {
     const section = this.activeSection();
     return section === null ? null : (this.sectionDescriptions[section] ?? null);
-  }
-
-  /**
-   * Group header text. On a section tab the section is already established by
-   * the tab, so only the category is shown; on "All" it is prefixed so a group
-   * reads as "Professional · Front End" rather than a bare "Front End".
-   */
-  protected groupLabel(group: CategoryGroup): string {
-    return this.activeSection() === null
-      ? `${group.section} · ${group.category}`
-      : group.category;
-  }
-
-  /**
-   * Section and category for a single row. Highlighted projects are lifted out
-   * of their category group, so without this they'd be the only rows on the
-   * page carrying no taxonomy at all.
-   */
-  protected taxonomy(project: Project): string {
-    return `${project.section} · ${project.category}`;
   }
 
   /** Zero-padded position, e.g. "01". */

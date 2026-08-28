@@ -47,48 +47,9 @@
     </div>
   }
 
-  @if (highlights().length) {
-    <div class="projects-category-bar projects-highlight-bar">
-      <span class="projects-category-label">Highlighted</span>
-      <span class="projects-category-count">{{ highlights().length }} {{ highlights().length === 1 ? 'project' : 'projects' }}</span>
-    </div>
-
-    @for (project of highlights(); track project.slug; let i = $index) {
-      <a class="project-row project-row-featured" [routerLink]="['/portfolio', project.slug]">
-        <div class="project-meta">
-          <span class="project-number">{{ number(i) }}</span>
-          <span class="project-year">{{ year(project) }}</span>
-          <span class="project-taxonomy">{{ taxonomy(project) }}</span>
-        </div>
-
-        @if (project.image_url) {
-          <div class="project-image" [style.background-image]="'url(' + project.image_url + ')'"></div>
-        } @else {
-          <div class="project-image project-image-empty"></div>
-        }
-
-        <div class="project-content">
-          <div class="project-title-row">
-            <h2 class="project-title">{{ project.name }}</h2>
-            <span class="project-status" [class]="'project-status-' + project.status">{{ project.status_label }}</span>
-          </div>
-          <p class="project-desc">{{ project.description }}</p>
-          <div class="project-tags">
-            @for (tech of project.stack; track tech) {
-              <span>{{ tech }}</span>
-            }
-          </div>
-          <div class="project-links">
-            <span class="project-link">View project <span class="link-arrow">→</span></span>
-          </div>
-        </div>
-      </a>
-    }
-  }
-
-  @for (group of groups(); track group.key) {
+  @for (group of groups(); track group.category) {
     <div class="projects-category-bar">
-      <span class="projects-category-label">{{ groupLabel(group) }}</span>
+      <span class="projects-category-label">{{ group.category }}</span>
       <span class="projects-category-count">{{ group.projects.length }} {{ group.projects.length === 1 ? 'project' : 'projects' }}</span>
     </div>
 
@@ -129,9 +90,7 @@
       </a>
     }
   } @empty {
-    <!-- Only truly empty if the highlight block is empty too, otherwise a
-         section whose projects are all highlighted would read as "nothing here". -->
-    @if (loaded() && !highlights().length) {
+    @if (loaded()) {
       <div class="projects-empty">
         <span class="projects-label">
           @if (activeSection(); as section) {
