@@ -1199,6 +1199,14 @@ a.portfolio-section-label:hover {
   color: #C4C4C2;
 }
 
+/* Section and category on a highlighted row. The highlight block replaces the
+   category header those projects would otherwise sit under, so the taxonomy
+   moves onto the row itself. */
+.project-taxonomy {
+  color: #6B6B68;
+  text-transform: uppercase;
+}
+
 .project-image {
   min-height: 18rem;
   background-size: cover;

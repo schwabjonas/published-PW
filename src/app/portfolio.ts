@@ -4,6 +4,9 @@ import { RouterLink } from '@angular/router';
 import { Project, ProjectService } from './project.service';
 
 interface CategoryGroup {
+  /** Composite key, so two sections can both have a "Front End" group. */
+  key: string;
+  section: string;
   category: string;
   projects: Project[];
 }
@@ -85,10 +88,13 @@ export class Portfolio {
     const byName = new Map<string, CategoryGroup>();
     for (const project of this.visible()) {
       if (project.featured) continue; // shown in the highlight block instead
-      let group = byName.get(project.category);
+      // Keyed by section *and* category: on the All tab an Academia "Front End"
+      // project must not fall into the Professional "Front End" group.
+      const key = `${project.section}|${project.category}`;
+      let group = byName.get(key);
       if (!group) {
-        group = { category: project.category, projects: [] };
-        byName.set(project.category, group);
+        group = { key, section: project.section, category: project.category, projects: [] };
+        byName.set(key, group);
         groups.push(group);
       }
       group.projects.push(project);
@@ -121,6 +127,26 @@ export class Portfolio {
   protected sectionDescription(): string | null {
     const section = this.activeSection();
     return section === null ? null : (this.sectionDescriptions[section] ?? null);
+  }
+
+  /**
+   * Group header text. On a section tab the section is already established by
+   * the tab, so only the category is shown; on "All" it is prefixed so a group
+   * reads as "Professional · Front End" rather than a bare "Front End".
+   */
+  protected groupLabel(group: CategoryGroup): string {
+    return this.activeSection() === null
+      ? `${group.section} · ${group.category}`
+      : group.category;
+  }
+
+  /**
+   * Section and category for a single row. Highlighted projects are lifted out
+   * of their category group, so without this they'd be the only rows on the
+   * page carrying no taxonomy at all.
+   */
+  protected taxonomy(project: Project): string {
+    return `${project.section} · ${project.category}`;
   }
 
   /** Zero-padded position, e.g. "01". */

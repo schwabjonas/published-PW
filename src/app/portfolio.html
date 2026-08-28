@@ -58,6 +58,7 @@
         <div class="project-meta">
           <span class="project-number">{{ number(i) }}</span>
           <span class="project-year">{{ year(project) }}</span>
+          <span class="project-taxonomy">{{ taxonomy(project) }}</span>
         </div>
 
         @if (project.image_url) {
@@ -85,9 +86,9 @@
     }
   }
 
-  @for (group of groups(); track group.category) {
+  @for (group of groups(); track group.key) {
     <div class="projects-category-bar">
-      <span class="projects-category-label">{{ group.category }}</span>
+      <span class="projects-category-label">{{ groupLabel(group) }}</span>
       <span class="projects-category-count">{{ group.projects.length }} {{ group.projects.length === 1 ? 'project' : 'projects' }}</span>
     </div>
 
