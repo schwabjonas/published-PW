@@ -5,8 +5,8 @@
     "section": "Professional",
     "category": "Front End",
     "featured": false,
-    "status": "complete",
-    "status_label": "Complete",
+    "status": "live",
+    "status_label": "Live",
     "date_created": "2025-10-22",
     "timeline": {
       "start_date": "2025-10-15",
@@ -19,7 +19,7 @@
       "Thought Industries",
       "Product Marketing"
     ],
-    "link": "",
+    "link": "https://siemens.eu.thoughtindustries.com/",
     "description": "A custom-built, responsive landing page for an enterprise-level workforce learning initiative, course page utilizing Thought Industries' Custom Code panel. The page serves as an entry portal for users to learn about, explore, and begin a microcredential program designed to bridge engineering competition skills with professional career readiness.",
     "contributions": [
       {
@@ -34,7 +34,7 @@
     "key_features": [
       {
         "title": "Hero Section",
-        "body": "Highlights the program's value proposition, outlines key skills gained (such as Collaboration, Product Lifecycle Management, and Digital Engineering), and displays a custom digital achievement badge alongside practical course metrics (Difficulty Level and Time Commitment)."
+        "body": "Highlights the program's value proposition ('Expedite'), outlines key skills gained (such as Collaboration, Product Lifecycle Management, and Digital Engineering), and displays a custom digital achievement badge alongside practical course metrics (Difficulty Level and Time Commitment)."
       },
       {
         "title": "The Learning Roadmap",
@@ -60,7 +60,7 @@
       }
     ],
     "image_url": "/content/assets/1diDy6Qk4EeapmKensHmXP-CMRPY-4vTK",
-    "client": "Enterprise engineering software company",
+    "client": "Siemens Digital Industry Software",
     "notes": ""
   },
   {
