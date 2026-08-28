@@ -1,14 +1,16 @@
 [
   {
-    "slug": "siemens-expedite-design",
+    "slug": "course-page-design",
     "name": "Course Page: Design & Implementation",
+    "section": "Professional",
     "category": "Front End",
-    "status": "live",
-    "status_label": "Live",
+    "featured": false,
+    "status": "complete",
+    "status_label": "Complete",
     "date_created": "2025-10-22",
     "timeline": {
-      "start_date": "2026-10-15",
-      "end_date": "2026-10-22"
+      "start_date": "2025-10-15",
+      "end_date": "2025-10-22"
     },
     "duration": "1 week",
     "stack": [
@@ -17,7 +19,7 @@
       "Thought Industries",
       "Product Marketing"
     ],
-    "link": "https://siemens.eu.thoughtindustries.com/",
+    "link": "",
     "description": "A custom-built, responsive landing page for an enterprise-level workforce learning initiative, course page utilizing Thought Industries' Custom Code panel. The page serves as an entry portal for users to learn about, explore, and begin a microcredential program designed to bridge engineering competition skills with professional career readiness.",
     "contributions": [
       {
@@ -32,7 +34,7 @@
     "key_features": [
       {
         "title": "Hero Section",
-        "body": "Highlights the program's value proposition ('Expedite'), outlines key skills gained (such as Collaboration, Product Lifecycle Management, and Digital Engineering), and displays a custom digital achievement badge alongside practical course metrics (Difficulty Level and Time Commitment)."
+        "body": "Highlights the program's value proposition, outlines key skills gained (such as Collaboration, Product Lifecycle Management, and Digital Engineering), and displays a custom digital achievement badge alongside practical course metrics (Difficulty Level and Time Commitment)."
       },
       {
         "title": "The Learning Roadmap",
@@ -46,47 +48,133 @@
     "images": [
       {
         "url": "/content/assets/1diDy6Qk4EeapmKensHmXP-CMRPY-4vTK",
-        "name": "Siemens-expedite-figma.png",
+        "name": "course-page-figma",
         "width": 1909,
         "height": 1856
       },
       {
         "url": "/content/assets/1WvkYbTtYC3fM7NuyXpSUUpQGLceClxuO",
-        "name": "Siemens-expedite-instructions.png",
+        "name": "course-page-instructions",
         "width": 1905,
         "height": 1686
       }
     ],
     "image_url": "/content/assets/1diDy6Qk4EeapmKensHmXP-CMRPY-4vTK",
-    "client": null,
+    "client": "Enterprise engineering software company",
     "notes": ""
   },
   {
-    "slug": "siemens-dba-redesign",
-    "name": "Artisan Coffee Tracker",
+    "slug": "digital-badging-redesign",
+    "name": "Digital Badging Application Redesign",
+    "section": "Professional",
     "category": "Front End",
-    "status": "live",
-    "status_label": "Live",
-    "date_created": "2026-07-06",
+    "featured": true,
+    "status": "complete",
+    "status_label": "Complete",
+    "date_created": "2025-12-01",
     "timeline": {
-      "start_date": "2026-01-15",
-      "end_date": "2026-03-22"
+      "start_date": "2024-09-01",
+      "end_date": "2025-12-01"
     },
-    "duration": "66 days",
+    "duration": "456 days",
     "stack": [
-      "Angular",
-      "Python",
-      "FastAPI",
-      "SQLite",
-      "TailwindCSS"
+      "Figma",
+      "Adobe Photoshop",
+      "UX Research",
+      "Usability Testing",
+      "Prototyping"
     ],
-    "link": "https://my-demo-app.com",
-    "description": "A web application that allows home roasters to log bean temperature, crust break times, and total extraction profiles with interactive SVG graphs.",
-    "contributions": [],
-    "key_features": [],
+    "link": "",
+    "description": "A global engineering software company issues academic credentials to computer-aided design learners worldwide, and the application that manages them had grown to 24 pages without anyone stepping back to look at it as a whole. People got lost in it. I led the full interface overhaul, work originally scoped for a team of five developers, restructuring the navigation around what people were actually trying to do and grounding every decision in research rather than taste.",
+    "contributions": [
+      {
+        "title": "Led the overhaul alone",
+        "body": "Redesigned all 24 pages of the internal badging application, work originally scoped for a five-developer team, from research through high-fidelity prototypes."
+      },
+      {
+        "title": "Ran the research",
+        "body": "Conducted dozens of stakeholder interviews and Wizard of Oz usability tests, where a person plays the role of the system so a flow can be tested before it is built."
+      },
+      {
+        "title": "Synthesized findings with rainbow sheets",
+        "body": "A spreadsheet that lines up every participant's observations side by side, so patterns surface across sessions instead of resting on the loudest interview."
+      },
+      {
+        "title": "Built the prototypes",
+        "body": "Produced high-fidelity Figma prototypes and custom Photoshop assets for the interface and its supporting documentation."
+      },
+      {
+        "title": "Administered the programs behind it",
+        "body": "Managed 300+ global credentialing programs serving over 10,000 computer-aided design learners, which is how I learned where the system actually broke down."
+      }
+    ],
+    "key_features": [
+      {
+        "title": "Navigation rebuilt around tasks",
+        "body": "The original 24 pages were grouped by internal structure rather than by what people came to do. Regrouping them cut the number of places a user had to look."
+      },
+      {
+        "title": "Wayfinding and signage",
+        "body": "Clearer labels and consistent positional cues so users could tell where they were in the system and what came next."
+      },
+      {
+        "title": "Reduced cognitive load",
+        "body": "Fewer competing elements per screen, so the primary action on each page is the obvious one."
+      },
+      {
+        "title": "Research-led iteration",
+        "body": "Each round of changes traced back to a specific observed failure, not a preference."
+      }
+    ],
     "images": [],
     "image_url": null,
-    "client": null,
+    "client": "Enterprise engineering software company",
+    "notes": ""
+  },
+  {
+    "slug": "city-drift",
+    "name": "City Drift",
+    "section": "Academia",
+    "category": "Game Development",
+    "featured": true,
+    "status": "complete",
+    "status_label": "Complete",
+    "date_created": "2026-04-21",
+    "timeline": {
+      "start_date": "2026-01-18",
+      "end_date": "2026-04-21"
+    },
+    "duration": "93 days",
+    "stack": [
+      "Unity",
+      "C#",
+      "Netcode for GameObjects"
+    ],
+    "link": "",
+    "description": "A networked multiplayer racer where players build the track before they race it. I built the track editor: anchor-based snapping, overlap detection, and a 60-second build timer.",
+    "contributions": [
+      {
+        "title": "Track editor",
+        "body": "Designed and built TrackBuilder (485 of its 511 lines), including the piece palette, anchor snapping, and flip controls."
+      },
+      {
+        "title": "Overlap detection",
+        "body": "Used layer masks with an inflation margin so pieces that merely touch aren't rejected as overlapping."
+      }
+    ],
+    "key_features": [
+      {
+        "title": "Player-built tracks",
+        "body": "Tracks are serialized and sent over the network so both players race the same layout."
+      },
+      {
+        "title": "Build timer",
+        "body": "A 60-second limit keeps the pre-race phase moving."
+      }
+    ],
+    "images": [],
+    "image_url": null,
+    "client": "Video Game Design 2, team of 4",
     "notes": ""
   }
 ]
