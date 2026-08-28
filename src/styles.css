@@ -2781,6 +2781,41 @@ app-chat + footer {
   object-fit: cover;
 }
 
+/* A spec sheet several thousand pixels tall would either blow the grid row out
+   or crop to an unreadable sliver. Cap the cell and let the reader scroll the
+   full image inside it. */
+.pd-gallery-item.is-tall {
+  position: relative;
+  max-height: 32rem;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+.pd-gallery-item.is-tall img {
+  height: auto;
+  object-fit: fill;
+}
+
+.pd-gallery-item.is-tall:focus-visible {
+  outline: 2px solid #0A0A0A;
+  outline-offset: -2px;
+}
+
+/* Sticks to the bottom of the cell while the image scrolls past underneath, so
+   the affordance stays visible instead of scrolling away with the content. */
+.pd-gallery-hint {
+  position: sticky;
+  bottom: 0;
+  padding: 6px 12px;
+  background: rgba(10, 10, 10, 0.78);
+  color: #F2F2F0;
+  font-family: "Space Mono", monospace;
+  font-size: 0.55rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-align: center;
+}
+
 /* ── Back bar ── */
 .pd-back-bar {
   display: flex;

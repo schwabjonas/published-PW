@@ -1,7 +1,7 @@
 import { Component, computed, inject, signal } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 
-import { Project, ProjectService } from './project.service';
+import { ImageRef, Project, ProjectService } from './project.service';
 
 /**
  * Portfolio project detail page (route: /portfolio/:slug).
@@ -40,6 +40,16 @@ export class ProjectDetail {
       return '';
     }
   });
+
+  /**
+   * True for images far taller than they are wide — annotated spec sheets and
+   * the like. Squeezing one into a grid cell renders it as an unreadable
+   * ribbon, so these get a capped, scrollable cell instead. Guarded on width so
+   * a missing dimension (0) never trips the branch.
+   */
+  protected isTall(img: ImageRef): boolean {
+    return img.width > 0 && img.height / img.width > 3;
+  }
 
   constructor() {
     const slug = this.route.snapshot.paramMap.get('slug');

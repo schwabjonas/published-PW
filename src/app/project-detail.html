@@ -136,9 +136,18 @@
       </div>
       <div class="pd-gallery">
         @for (img of p.images; track img.url) {
-          <figure class="pd-gallery-item">
-            <img [src]="img.url" [alt]="img.name" loading="lazy" />
-          </figure>
+          @if (isTall(img)) {
+            <!-- tabindex so the scroll region is reachable by keyboard, not just
+                 by trackpad over the image. -->
+            <figure class="pd-gallery-item is-tall" tabindex="0" role="group" [attr.aria-label]="img.name + ' (scrollable)'">
+              <img [src]="img.url" [alt]="img.name" loading="lazy" />
+              <figcaption class="pd-gallery-hint">Scroll to read</figcaption>
+            </figure>
+          } @else {
+            <figure class="pd-gallery-item">
+              <img [src]="img.url" [alt]="img.name" loading="lazy" />
+            </figure>
+          }
         }
       </div>
     </section>
