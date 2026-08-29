@@ -1,5 +1,94 @@
 [
   {
+    "slug": "ai-jobs-data-viz",
+    "name": "How AI is Reshaping the Job Market",
+    "section": "Academia",
+    "category": "Front End",
+    "featured": false,
+    "status": "live",
+    "status_label": "Live",
+    "date_created": "2025-12-05",
+    "timeline": {
+      "start_date": "2025-10-25",
+      "end_date": "2025-12-05"
+    },
+    "duration": "41 days",
+    "stack": [
+      "D3.js",
+      "JavaScript",
+      "HTML5",
+      "CSS3",
+      "Python",
+      "Jupyter"
+    ],
+    "link": "https://csex57.github.io/AIjobs/scrolly-test/index.html",
+    "presentation": "https://csex57.github.io/AIjobs/processbook.html",
+    "description": "A scroll-driven narrative about how AI is changing employment, where the charts advance as you read rather than sitting still beside the text. I wrote 4,076 of the 4,951 lines of JavaScript in the published build, including the layer that maps reading position to the active visualization, both choropleth maps, and the job-vulnerability views.",
+    "contributions": [
+      {
+        "title": "Narrative orchestration",
+        "body": "Wrote scroll-narrative.js, 321 of its 350 lines, which decides which visualization is active at a given scroll position and drives the transition into the next one. It sits on top of the third-party scroll-watcher library rather than replacing it."
+      },
+      {
+        "title": "Choropleth maps",
+        "body": "Built the United States and world maps end to end, 414 and 353 lines, both entirely mine, sharing one interaction model so state-level and country-level patterns read the same way."
+      },
+      {
+        "title": "Job vulnerability views",
+        "body": "Wrote the combined view, the animated transition between encodings, the scatter, and the scroll variant, roughly 1,390 lines across four files."
+      },
+      {
+        "title": "Opportunity and skill demand",
+        "body": "Wrote high-ai-opportunity-scroll.js at 874 lines and skill-demand-changes-scroll.js at 456 lines, both entirely mine, plus the light and dark theming."
+      },
+      {
+        "title": "Exploratory analysis",
+        "body": "Five Python notebooks covering preprocessing, state-level analysis, and threat scoring, which determined what the final views would actually show."
+      }
+    ],
+    "key_features": [
+      {
+        "title": "Charts driven by reading position",
+        "body": "Each section advances the visualization instead of swapping it out, so the argument and the data move together rather than competing for attention."
+      },
+      {
+        "title": "Two-column layout",
+        "body": "Visualizations hold the left three quarters of the screen while the text column updates alongside, so a chart stays in view while you read about it."
+      },
+      {
+        "title": "Animated transitions between encodings",
+        "body": "Charts morph rather than cut when the question changes, which keeps the reader oriented instead of forcing them to re-read the axes."
+      },
+      {
+        "title": "Process book",
+        "body": "The published write-up covers the sketches, the data decisions, and the revisions made after user testing."
+      }
+    ],
+    "images": [
+      {
+        "url": "/content/assets/1ahO3LG4fooEkhFQLeUZv0gzyEE0rX-6U",
+        "name": "Screenshot 2026-08-28 at 7.10.26 PM.png",
+        "width": 2228,
+        "height": 1766
+      },
+      {
+        "url": "/content/assets/1EKe01B72lj0Bsc0-lS78apIWfpA1SerU",
+        "name": "Screenshot 2026-08-28 at 7.25.43 PM.png",
+        "width": 2224,
+        "height": 1760
+      },
+      {
+        "url": "/content/assets/1ppioYf7kdnta3E20KmhwlgvqBpLltu-a",
+        "name": "Screenshot 2026-08-28 at 7.25.59 PM.png",
+        "width": 2224,
+        "height": 1758
+      }
+    ],
+    "image_url": "/content/assets/1ahO3LG4fooEkhFQLeUZv0gzyEE0rX-6U",
+    "client": "Data Visualization final project, team of 4",
+    "notes": ""
+  },
+  {
     "slug": "course-page-design",
     "name": "Course Page: Design & Implementation",
     "section": "Professional",
@@ -20,6 +109,7 @@
       "Product Marketing"
     ],
     "link": "https://siemens.eu.thoughtindustries.com/",
+    "presentation": "",
     "description": "A custom-built, responsive landing page for an enterprise-level workforce learning initiative, course page utilizing Thought Industries' Custom Code panel. The page serves as an entry portal for users to learn about, explore, and begin a microcredential program designed to bridge engineering competition skills with professional career readiness.",
     "contributions": [
       {
@@ -61,8 +151,7 @@
     ],
     "image_url": "/content/assets/1k8FzeR2uN1l2PdamFjFCwOTHAqzzODL9",
     "client": "Siemens Digital Industry Software",
-    "notes": "",
-    "presentation": ""
+    "notes": ""
   },
   {
     "slug": "digital-badging-redesign",
@@ -80,12 +169,14 @@
     "duration": "456 days",
     "stack": [
       "Figma",
+      "Mendix",
       "Adobe Photoshop",
       "UX Research",
       "Usability Testing",
       "Prototyping"
     ],
     "link": "",
+    "presentation": "",
     "description": "A global engineering software company issues academic credentials to computer-aided design learners worldwide, and the application that manages them had grown to 24 pages without anyone stepping back to look at it as a whole. People got lost in it. I led the full interface overhaul, work originally scoped for a team of five developers, restructuring the navigation around what people were actually trying to do and grounding every decision in research rather than taste.",
     "contributions": [
       {
@@ -167,8 +258,7 @@
     ],
     "image_url": "/content/assets/1w2FfdyD14M5QKXrJ0rQRKALPOPRCcDde",
     "client": "Enterprise engineering software company",
-    "notes": "",
-    "presentation": ""
+    "notes": ""
   },
   {
     "slug": "city-drift",
