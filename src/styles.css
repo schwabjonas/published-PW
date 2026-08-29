@@ -2486,6 +2486,26 @@ app-chat + footer {
   color: #F2F2F0;
 }
 
+/* Wraps the one-or-two hero actions so they sit side by side, and stack on a
+   narrow screen rather than overflowing. */
+.pd-cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+/* Outlined rather than filled, so when a project has both, the live thing stays
+   the primary target and the deck reads as secondary. */
+.pd-cta-secondary {
+  background: transparent;
+  color: #F2F2F0;
+}
+
+.pd-cta-secondary:hover {
+  background: #F2F2F0;
+  color: #0A0A0A;
+}
+
 /* ---------------------------------------------------------------------------
    Trailing-arrow microinteraction
    ---------------------------------------------------------------------------

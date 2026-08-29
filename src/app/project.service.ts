@@ -44,6 +44,10 @@ export const ProjectSchema = z.object({
   duration: z.string(),
   stack: z.array(z.string()),
   link: z.string().default(''),
+  // Optional second link (a slide deck or write-up). Site-relative paths are
+  // allowed here as well as absolute URLs, so a deck committed under
+  // public/content/decks/ can be referenced directly.
+  presentation: z.string().default(''),
   description: z.string(),
   contributions: z.array(LabeledItemSchema),
   key_features: z.array(LabeledItemSchema),

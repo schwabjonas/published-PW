@@ -61,7 +61,8 @@
     ],
     "image_url": "/content/assets/1k8FzeR2uN1l2PdamFjFCwOTHAqzzODL9",
     "client": "Siemens Digital Industry Software",
-    "notes": ""
+    "notes": "",
+    "presentation": ""
   },
   {
     "slug": "digital-badging-redesign",
@@ -166,7 +167,8 @@
     ],
     "image_url": "/content/assets/1w2FfdyD14M5QKXrJ0rQRKALPOPRCcDde",
     "client": "Enterprise engineering software company",
-    "notes": ""
+    "notes": "",
+    "presentation": ""
   },
   {
     "slug": "city-drift",
@@ -187,7 +189,7 @@
       "C#",
       "Netcode for GameObjects"
     ],
-    "link": "https://jenma05.itch.io/city-drift?secret=awex89VtC6OQCY09c6sRjW5Zug",
+    "link": "",
     "description": "A networked multiplayer racer where players build the track before they race it. I built the track editor: anchor-based snapping, overlap detection, and a 60-second build timer.",
     "contributions": [
       {
@@ -249,6 +251,7 @@
     ],
     "image_url": "/content/assets/16bGosJOxRsddLLA0RYSyWzpPOXC7bFJv",
     "client": "Video Game Design 2, team of 4",
-    "notes": ""
+    "notes": "",
+    "presentation": "/content/decks/city-drift-final-presentation.pdf"
   }
 ]
