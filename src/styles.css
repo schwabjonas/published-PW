@@ -3065,6 +3065,18 @@ app-chat + footer {
 
   /* The desktop nudge would push the head into the section below once stacked. */
   .hero-inner app-animated-head { transform: none; }
+
+  /* The hands and feet belong to the same character as the head, so they follow
+     it. Once the hero stacks, the head is centered while --hands-left /
+     --feet-left kept these pinned to a fixed left offset — the limbs sat off in
+     the corner with the body in the middle. Centering lives here rather than in
+     the phone tier because "is the hero stacked" is the condition that decides
+     it; the phone tier is a subset and inherits this. */
+  .group40-img,
+  .group39-img {
+    left: 50%;
+    transform: translateX(-50%);
+  }
 }
 
 /* ── Phone ─────────────────────────────────────────────────────────────────
@@ -3095,14 +3107,6 @@ app-chat + footer {
        art deliberately overhangs its box by ~9px, so this stays small. */
     --hero-pad-bottom: 4px;
     --hero-gap: 1.25rem;
-  }
-
-  /* Centered rather than pinned to a fixed left offset, which put both graphics
-     off to one side on a narrow screen. */
-  .group40-img,
-  .group39-img {
-    left: 50%;
-    transform: translateX(-50%);
   }
 
   /* The feet hang below their zero-height divider and were landing on top of
