@@ -725,6 +725,30 @@ a.btn {
   transition: transform 0.12s ease-out;
 }
 
+/* "Click me" affordance floating off the head's left side.
+   Anchored to the two things it was specified against rather than to fixed
+   coordinates, so it holds position at every breakpoint:
+     horizontally — 20px left of the *artwork's* left edge, which is inset from
+       the box by --head-img-left (25px at default, 18-33px across breakpoints)
+     vertically   — the eye line, which animated-head.ts defines as
+       eyeLineRatio = 0.32 of the box height, then lifted 20px above it
+   Keep the 0.32 here in step with eyeLineRatio if that constant ever moves. */
+.head-click-hint {
+  position: absolute;
+  right: calc(100% - var(--head-img-left) + 20px);
+  top: 32%;
+  transform: translateY(calc(-50% - 20px)) rotate(-45deg);
+  z-index: 3; /* above the head layers (z-2) and the oval backdrop (z-1) */
+  color: #FFFFFF;
+  font-family: "Space Mono", monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  pointer-events: none; /* the parent div owns the click */
+  user-select: none;
+}
+
 .ticker-strip {
   overflow: hidden;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
