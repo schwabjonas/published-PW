@@ -630,7 +630,9 @@ a.btn {
   width: var(--feet-w);
   height: auto;
   top: var(--feet-top);
-  left: var(--feet-left);
+  /* Centered on --character-center rather than carrying its own left offset,
+     so the feet track the head instead of drifting away from it per tier. */
+  left: calc(var(--character-center) - var(--feet-w) / 2);
   pointer-events: none;
   user-select: none;
 }
@@ -647,7 +649,8 @@ a.btn {
   width: var(--hands-w);
   height: auto;
   top: var(--hands-top);
-  left: var(--hands-left);
+  /* Same center line as the head — see --character-center. */
+  left: calc(var(--character-center) - var(--hands-w) / 2);
   pointer-events: none;
   user-select: none;
 }
@@ -659,14 +662,14 @@ a.btn {
   gap: 2rem;
   position: relative;
   z-index: 1;
-  padding-left: 32px;
+  /* Feeds --character-center, so the limbs move with the head if this changes. */
+  padding-left: var(--hero-inner-pad);
 }
 
 /* Nudge the floating head down in the home hero (scoped so the chat page,
    which uses .chat-hero-inner, is unaffected). */
 .hero-inner app-animated-head {
-  transform: translateY(24px);
-
+  transform: translateY(34px);
 }
 
 /* Shift the oval backdrop behind the head down 15px / left 5px (home only).
@@ -2961,15 +2964,30 @@ app-chat + footer {
   --head-oval-h: 600px;
 
   /* Decorative limbs that hang out of zero-height dividers: Group 40 ("hands")
-     between the hero and the ticker, Group 39 ("feet") above the footer. */
+     between the hero and the ticker, Group 39 ("feet") above the footer.
+     They only carry a size — their horizontal position comes from
+     --character-center below, so they cannot drift away from the head. */
   --hands-w: 250px;
   --hands-top: -30px;
-  --hands-left: 32px;
   --feet-w: 200px;
   --feet-top: -10px;
-  --feet-left: 57px;
 
   --hero-pad: 32px;
+  --hero-inner-pad: 32px;
+
+  /* The vertical line the whole character is built around: head, hands, feet.
+     The head art is centered inside its own --head-w box at every tier, so the
+     head's center is just the box's center, and the box starts after the hero's
+     padding plus .hero-inner's. Previously the limbs each carried a separate
+     hand-tuned left offset, which agreed with the head at no tier — they were
+     out by 3px at desktop, 7px at tablet and 13px on large screens.
+
+     This describes the SIDE-BY-SIDE hero only. Below 1024px the hero stacks and
+     the head is centered on the page instead, so the stacked block overrides
+     all three to the page's center line. */
+  --character-center: calc(
+    var(--hero-pad) + var(--hero-inner-pad) + var(--head-w) / 2
+  );
   /* Split out so the gap between the head and the ticker can be tightened
      independently of the hero's other sides. */
   --hero-pad-bottom: 32px;
@@ -2996,15 +3014,17 @@ app-chat + footer {
 
     --hands-w: 330px;
     --hands-top: -40px;
-    --hands-left: 56px;
     --feet-w: 265px;
     --feet-top: -13px;
-    --feet-left: 76px;
 
     --hero-pad: 56px;
     --hero-pad-bottom: 56px;
     --hero-gap: 3.5rem;
   }
+
+  /* 5px deeper than the desktop drop — the taller hero here leaves the head
+     sitting high against the copy beside it. */
+  .hero-inner app-animated-head { transform: translateY(39px); }
 
   .navbar { height: 64px; }
   .hero h1 { font-size: 4.25rem; }
@@ -3028,10 +3048,8 @@ app-chat + footer {
 
     --hands-w: 205px;
     --hands-top: -24px;
-    --hands-left: 26px;
     --feet-w: 165px;
     --feet-top: -8px;
-    --feet-left: 46px;
 
     --hero-pad: 26px;
     --hero-pad-bottom: 20px;
@@ -3064,15 +3082,21 @@ app-chat + footer {
 
   .hero-copy .hero-chat-btn { margin-top: 0.25rem; }
 
-  /* The desktop nudge would push the head into the section below once stacked. */
-  .hero-inner app-animated-head { transform: none; }
+  /* Its own drop rather than the desktop one, which is tuned against the copy
+     sitting beside the head and is too deep once the copy is above it. */
+  .hero-inner app-animated-head { transform: translateY(20px); }
 
-  /* The hands and feet belong to the same character as the head, so they follow
-     it. Once the hero stacks, the head is centered while --hands-left /
-     --feet-left kept these pinned to a fixed left offset — the limbs sat off in
-     the corner with the body in the middle. Centering lives here rather than in
-     the phone tier because "is the hero stacked" is the condition that decides
-     it; the phone tier is a subset and inherits this. */
+  /* Centering the feet moved them off the empty left margin and onto the footer
+     text. Buys back the clearance the old left-hand placement gave for free. */
+  footer .container {
+    padding-top: calc(11.5px + 50px) !important;
+  }
+
+  /* Stacked: the head is centered on the page by align-items, so the limbs
+     center on the page too rather than on --character-center, which describes
+     the side-by-side hero. Lives here rather than in the phone tier because
+     "is the hero stacked" is the condition that decides it; the phone tier is
+     a subset and inherits this. */
   .group40-img,
   .group39-img {
     left: 50%;
