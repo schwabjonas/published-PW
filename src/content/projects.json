@@ -20,7 +20,7 @@
     ],
     "link": "https://jenma05.itch.io/city-drift?secret=awex89VtC6OQCY09c6sRjW5Zug",
     "presentation": "/content/decks/city-drift-final-presentation.pdf",
-    "description": "A networked multiplayer racer where players build the track before they race it. I built the track editor: anchor-based snapping, overlap detection, and a 60-second build timer.",
+    "description": "A networked multiplayer racer where players build the track before they race it. I built the track editor: anchor-based snapping, overlap detection, and other functionality.",
     "contributions": [
       {
         "title": "Track editor",
@@ -269,7 +269,7 @@
       },
       {
         "title": "Ran the research",
-        "body": "Conducted dozens of stakeholder interviews and Wizard of Oz usability tests, where a person plays the role of the system so a flow can be tested before it is built."
+        "body": "Conducted a dozen stakeholder interviews and Wizard of Oz usability tests, where a person plays the role of the system so a flow can be tested before it is built."
       },
       {
         "title": "Synthesized findings with rainbow sheets",

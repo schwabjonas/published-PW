@@ -24,21 +24,14 @@ export class Portfolio {
    * (matches the `category` field in each project's info.json). Add entries here
    * as new categories appear.
    */
-  private readonly categoryDescriptions: Record<string, string> = {
-    // Hidden for now — uncomment to show the Front End category description.
-    // 'Front End':
-    //   'I love bringing designs to life with interactive and accessible user interfaces. From crafting animations that enhance the user experience to ensuring cross-browser compatibility, I focus on making the web a delightful place to navigate.',
-  };
+  private readonly categoryDescriptions: Record<string, string> = {};
 
   /**
    * Optional intro copy shown under a section tab. Keyed by section name. This
    * is where a tab gets reframed in one line — e.g. stopping "Academia" from
    * reading as "homework".
    */
-  private readonly sectionDescriptions: Record<string, string> = {
-    Academia:
-      'Course projects where I built more than the assignment asked for.',
-  };
+  private readonly sectionDescriptions: Record<string, string> = {};
 
   // ── Section tabs (top level: Academia / Professional / Personal) ────────
   /** Active section tab, or null for the "All" default. */
@@ -110,15 +103,25 @@ export class Portfolio {
     });
   }
 
+  /**
+   * A defined, non-blank intro string, or null. Both lookups go through this so
+   * an entry left empty — or holding only spaces, which is truthy and would
+   * otherwise render an empty intro bar — is treated the same as no entry.
+   */
+  private static intro(value: string | undefined): string | null {
+    const text = value?.trim();
+    return text ? text : null;
+  }
+
   /** Intro copy for a category, or null if none is defined. */
   protected description(category: string): string | null {
-    return this.categoryDescriptions[category] ?? null;
+    return Portfolio.intro(this.categoryDescriptions[category]);
   }
 
   /** Intro copy for the active section, or null if none is defined. */
   protected sectionDescription(): string | null {
     const section = this.activeSection();
-    return section === null ? null : (this.sectionDescriptions[section] ?? null);
+    return section === null ? null : Portfolio.intro(this.sectionDescriptions[section]);
   }
 
   /** Zero-padded position, e.g. "01". */
